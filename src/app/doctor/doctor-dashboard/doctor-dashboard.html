@@ -1,0 +1,508 @@
+<div class="dashboard">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.collapsed]="sidebarCollapsed">
+    <div class="sidebar-header">
+      <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+        <rect width="36" height="36" rx="9" fill="url(#grad)"/>
+        <path d="M18 8v20M8 18h20" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="18" cy="18" r="10" stroke="white" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <defs>
+          <linearGradient id="grad" x1="0" y1="0" x2="36" y2="36">
+            <stop offset="0%" stop-color="#4da6ff"/>
+            <stop offset="100%" stop-color="#7c3aed"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="sidebar-brand" *ngIf="!sidebarCollapsed">Clínica</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label" *ngIf="!sidebarCollapsed">Menú Principal</span>
+      <button class="nav-item" [class.active]="seccionActiva === 'inicio'" (click)="cambiarSeccion('inicio')">
+        <span class="nav-icon">⊞</span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Contenido</span>
+      </button>
+      <button class="nav-item" [class.active]="seccionActiva === 'citas'" (click)="cambiarSeccion('citas')">
+        <span class="nav-icon">📅</span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Citas</span>
+        <span class="nav-badge" *ngIf="!sidebarCollapsed">3</span>
+      </button>
+
+      <span class="nav-section-label" *ngIf="!sidebarCollapsed">Clínica</span>
+      <button class="nav-item" [class.active]="seccionActiva === 'pacientes'" (click)="cambiarSeccion('pacientes')">
+        <span class="nav-icon">👥</span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Pacientes</span>
+      </button>
+      <button class="nav-item" [class.active]="seccionActiva === 'historial'" (click)="cambiarSeccion('historial')">
+        <span class="nav-icon">📋</span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Historial médico</span>
+      </button>
+      <button class="nav-item" [class.active]="seccionActiva === 'recetas'" (click)="cambiarSeccion('recetas')">
+        <span class="nav-icon">💊</span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Recetas</span>
+      </button>
+
+      <span class="nav-section-label" *ngIf="!sidebarCollapsed">Gestión</span>
+      <button class="nav-item" [class.active]="seccionActiva === 'derivaciones'" (click)="cambiarSeccion('derivaciones')">
+        <span class="nav-icon">🔀</span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Derivaciones</span>
+      </button>
+      <button class="nav-item" [class.active]="seccionActiva === 'inventario'" (click)="cambiarSeccion('inventario')">
+        <span class="nav-icon">🏥</span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Inventario</span>
+      </button>
+      <button class="nav-item" [class.active]="seccionActiva === 'estadisticas'" (click)="cambiarSeccion('estadisticas')">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Estadísticas</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="doctor-info" *ngIf="!sidebarCollapsed">
+        <div class="doctor-avatar">DR</div>
+        <div>
+          <span class="doctor-name">Dr. Ramírez</span>
+          <span class="doctor-role">Medicina General</span>
+        </div>
+        <div class="online-dot"></div>
+      </div>
+      <button class="collapse-btn" (click)="sidebarCollapsed = !sidebarCollapsed">
+        {{ sidebarCollapsed ? '→' : '←' }}
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">{{ tituloSeccion }}</h1>
+        <span class="page-date">{{ fechaHoy }}</span>
+      </div>
+      <div class="topbar-right">
+        <div class="search-top">
+          <span>🔍</span>
+          <input type="text" placeholder="Buscar paciente, cita..."/>
+        </div>
+        <div class="notif-btn">🔔<span class="notif-badge">3</span></div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="seccion" *ngIf="seccionActiva === 'inicio'">
+      <div class="stats-grid">
+        <div class="stat-card blue">
+          <div class="stat-top">
+            <div class="stat-icon-wrap">
+              <img src="assets/imagenes/calendario{{imageExt}}" alt="Citas">
+            </div>
+            <span class="stat-trend trend-up">+2 hoy</span>
+          </div>
+          <span class="stat-num">8</span>
+          <span class="stat-lbl">Citas programadas</span>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-top">
+            <div class="stat-icon-wrap">✅</div>
+            <span class="stat-trend trend-up">62%</span>
+          </div>
+          <span class="stat-num">5</span>
+          <span class="stat-lbl">Pacientes atendidos</span>
+        </div>
+        <div class="stat-card yellow">
+          <div class="stat-top">
+            <div class="stat-icon-wrap">⏳</div>
+            <span class="stat-trend trend-down">3 pend.</span>
+          </div>
+          <span class="stat-num">3</span>
+          <span class="stat-lbl">Por atender</span>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-top">
+            <div class="stat-icon-wrap">👥</div>
+            <span class="stat-trend trend-up">+5 mes</span>
+          </div>
+          <span class="stat-num">142</span>
+          <span class="stat-lbl">Pacientes activos</span>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Citas de hoy</div>
+            <div class="card-subtitle">Lunes 16 de junio, 2026</div>
+          </div>
+          <button class="btn-sm" (click)="cambiarSeccion('citas')">Ver todas →</button>
+        </div>
+        <div class="table-wrap">
+          <div class="table-head-row">
+            <span class="col-pac">Paciente</span>
+            <span class="col-hora">Hora</span>
+            <span class="col-motivo">Motivo</span>
+            <span class="col-estado">Estado</span>
+            <span class="col-acc"></span>
+          </div>
+          <div class="table-row" *ngFor="let cita of citasHoy">
+            <span class="col-pac">
+              <div class="mini-avatar">{{ cita.iniciales }}</div>
+              {{ cita.nombre }}
+            </span>
+            <span class="col-hora">{{ cita.hora }}</span>
+            <span class="col-motivo">{{ cita.motivo }}</span>
+            <span class="col-estado"><span class="badge" [ngClass]="cita.estado">{{ cita.estadoLabel }}</span></span>
+            <span class="col-acc"><button class="btn-icon">›</button></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CITAS -->
+    <div class="seccion" *ngIf="seccionActiva === 'citas'">
+      <div class="section-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Gestión de citas</div>
+            <div class="card-subtitle">{{ todasLasCitas.length }} citas registradas</div>
+          </div>
+          <button class="btn-primary" (click)="mostrarFormCita = !mostrarFormCita">+ Nueva cita</button>
+        </div>
+
+        <div class="form-cita" *ngIf="mostrarFormCita">
+          <div class="form-grid">
+            <div class="field">
+              <label>Paciente</label>
+              <input type="text" placeholder="Nombre completo" [(ngModel)]="nuevaCita.paciente"/>
+            </div>
+            <div class="field">
+              <label>Tipo de consulta</label>
+              <select [(ngModel)]="nuevaCita.motivo">
+                <option value="">Seleccionar...</option>
+                <option>Control rutinario</option>
+                <option>Primera consulta</option>
+                <option>Revisión de exámenes</option>
+                <option>Seguimiento</option>
+                <option>Emergencia</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Fecha</label>
+              <input type="date" [(ngModel)]="nuevaCita.fecha"/>
+            </div>
+            <div class="field">
+              <label>Hora</label>
+              <input type="time" [(ngModel)]="nuevaCita.hora"/>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-primary" (click)="registrarCita()">Guardar cita</button>
+            <button class="btn-outline" (click)="mostrarFormCita = false">Cancelar</button>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab" [class.active]="tabCitas === 'todas'" (click)="tabCitas = 'todas'">Todas</button>
+          <button class="tab" [class.active]="tabCitas === 'hoy'" (click)="tabCitas = 'hoy'">Hoy</button>
+          <button class="tab" [class.active]="tabCitas === 'pendientes'" (click)="tabCitas = 'pendientes'">Pendientes</button>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-head-row">
+            <span class="col-pac">Paciente</span>
+            <span class="col-hora">Fecha</span>
+            <span class="col-hora">Hora</span>
+            <span class="col-motivo">Motivo</span>
+            <span class="col-estado">Estado</span>
+          </div>
+          <div class="table-row" *ngFor="let cita of citasFiltradas">
+            <span class="col-pac"><div class="mini-avatar">{{ cita.iniciales }}</div>{{ cita.nombre }}</span>
+            <span class="col-hora">{{ cita.fecha }}</span>
+            <span class="col-hora">{{ cita.hora }}</span>
+            <span class="col-motivo">{{ cita.motivo }}</span>
+            <span class="col-estado"><span class="badge" [ngClass]="cita.estado">{{ cita.estadoLabel }}</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PACIENTES -->
+    <div class="seccion" *ngIf="seccionActiva === 'pacientes'">
+      <div class="section-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Directorio de pacientes</div>
+            <div class="card-subtitle">{{ pacientes.length }} pacientes registrados</div>
+          </div>
+          <input class="search-input" type="text" placeholder="🔍 Buscar paciente..." [(ngModel)]="busquedaPaciente"/>
+        </div>
+        <div class="pacientes-list">
+          <div class="paciente-item" *ngFor="let p of pacientesFiltrados" (click)="verPaciente(p)">
+            <div class="paciente-avatar">{{ p.iniciales }}</div>
+            <div class="paciente-info">
+              <span class="paciente-nombre">{{ p.nombre }}</span>
+              <span class="paciente-detalle">{{ p.edad }} años · {{ p.diagnostico }}</span>
+            </div>
+            <span class="paciente-fecha">Última visita: {{ p.ultimaVisita }}</span>
+            <span class="arrow">›</span>
+          </div>
+        </div>
+      </div>
+      <div class="section-card" *ngIf="pacienteSeleccionado">
+        <div class="card-header">
+          <div>
+            <div class="card-title">{{ pacienteSeleccionado.nombre }}</div>
+            <div class="card-subtitle">{{ pacienteSeleccionado.edad }} años · {{ pacienteSeleccionado.diagnostico }}</div>
+          </div>
+          <button class="btn-outline" (click)="pacienteSeleccionado = null">Cerrar</button>
+        </div>
+        <div class="historial-grid">
+          <div class="historial-item" *ngFor="let h of pacienteSeleccionado.historial">
+            <span class="historial-fecha">{{ h.fecha }}</span>
+            <span class="historial-dx">{{ h.diagnostico }}</span>
+            <span class="historial-nota">{{ h.nota }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORIAL -->
+    <div class="seccion" *ngIf="seccionActiva === 'historial'">
+      <div class="section-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Historial médico</div>
+            <div class="card-subtitle">Registros clínicos de todos los pacientes</div>
+          </div>
+          <input class="search-input" type="text" placeholder="🔍 Buscar..." [(ngModel)]="busquedaPaciente"/>
+        </div>
+        <div class="historial-grid">
+          <div class="historial-item" *ngFor="let p of pacientesFiltrados">
+            <span class="historial-fecha">{{ p.ultimaVisita }}</span>
+            <span class="historial-dx">{{ p.nombre }}</span>
+            <span class="historial-nota">{{ p.diagnostico }} · {{ p.historial[0]?.nota }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECETAS -->
+    <div class="seccion" *ngIf="seccionActiva === 'recetas'">
+      <div class="section-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Recetas médicas</div>
+            <div class="card-subtitle">Genera recetas para tus pacientes</div>
+          </div>
+          <button class="btn-primary" (click)="mostrarFormReceta = !mostrarFormReceta">+ Nueva receta</button>
+        </div>
+        <div class="form-cita" *ngIf="mostrarFormReceta">
+          <div class="form-grid">
+            <div class="field">
+              <label>Paciente</label>
+              <input type="text" placeholder="Nombre del paciente" [(ngModel)]="nuevaReceta.paciente"/>
+            </div>
+            <div class="field">
+              <label>Medicamento</label>
+              <input type="text" placeholder="Nombre del medicamento" [(ngModel)]="nuevaReceta.medicamento"/>
+            </div>
+            <div class="field">
+              <label>Dosis</label>
+              <input type="text" placeholder="Ej: 500mg cada 8 horas" [(ngModel)]="nuevaReceta.dosis"/>
+            </div>
+            <div class="field">
+              <label>Duración</label>
+              <input type="text" placeholder="Ej: 5 días" [(ngModel)]="nuevaReceta.duracion"/>
+            </div>
+            <div class="field full">
+              <label>Indicaciones adicionales</label>
+              <textarea placeholder="Instrucciones para el paciente..." [(ngModel)]="nuevaReceta.indicaciones" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-primary" (click)="guardarReceta()">Guardar receta</button>
+            <button class="btn-outline" (click)="mostrarFormReceta = false">Cancelar</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-head-row">
+            <span class="col-pac">Paciente</span>
+            <span class="col-motivo">Medicamento</span>
+            <span class="col-hora">Dosis</span>
+            <span class="col-hora">Duración</span>
+            <span class="col-estado">Fecha</span>
+          </div>
+          <div class="table-row" *ngFor="let r of recetas">
+            <span class="col-pac"><div class="mini-avatar">{{ r.iniciales }}</div>{{ r.paciente }}</span>
+            <span class="col-motivo">{{ r.medicamento }}</span>
+            <span class="col-hora">{{ r.dosis }}</span>
+            <span class="col-hora">{{ r.duracion }}</span>
+            <span class="col-estado"><span class="badge confirmada">{{ r.fecha }}</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DERIVACIONES -->
+    <div class="seccion" *ngIf="seccionActiva === 'derivaciones'">
+      <div class="section-card">
+        <div class="card-header">
+          <div class="card-title">Derivar paciente</div>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label>Paciente</label>
+            <input type="text" placeholder="Nombre del paciente" [(ngModel)]="derivacion.paciente"/>
+          </div>
+          <div class="field">
+            <label>Especialidad destino</label>
+            <select [(ngModel)]="derivacion.especialidad">
+              <option value="">Seleccionar especialidad...</option>
+              <option>Cardiología</option>
+              <option>Neurología</option>
+              <option>Traumatología</option>
+              <option>Dermatología</option>
+              <option>Oftalmología</option>
+              <option>Psiquiatría</option>
+              <option>Ginecología</option>
+              <option>Pediatría</option>
+              <option>Oncología</option>
+              <option>Endocrinología</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Motivo de derivación</label>
+            <textarea placeholder="Describe el motivo de la derivación..." [(ngModel)]="derivacion.motivo" rows="3"></textarea>
+          </div>
+          <div class="field full">
+            <label>Prioridad</label>
+            <div class="prioridad-grid">
+              <button class="prioridad-btn" [class.selected-normal]="derivacion.prioridad === 'Normal'" (click)="derivacion.prioridad = 'Normal'">✅ Normal</button>
+              <button class="prioridad-btn" [class.selected-urgente]="derivacion.prioridad === 'Urgente'" (click)="derivacion.prioridad = 'Urgente'">⚠️ Urgente</button>
+              <button class="prioridad-btn" [class.selected-muy]="derivacion.prioridad === 'Muy urgente'" (click)="derivacion.prioridad = 'Muy urgente'">🚨 Muy urgente</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions" style="margin-top: 8px;">
+          <button class="btn-primary" (click)="registrarDerivacion()">Registrar derivación</button>
+        </div>
+        <div class="success-msg" *ngIf="derivacionExitosa">✅ Derivación registrada correctamente</div>
+      </div>
+    </div>
+
+    <!-- INVENTARIO -->
+    <div class="seccion" *ngIf="seccionActiva === 'inventario'">
+      <div class="section-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Inventario de medicamentos</div>
+            <div class="card-subtitle">{{ medicamentos.length }} productos registrados</div>
+          </div>
+          <input class="search-input" type="text" placeholder="🔍 Buscar medicamento..." [(ngModel)]="busquedaMed"/>
+        </div>
+        <div class="table-wrap">
+          <div class="table-head-row">
+            <span class="col-med">Medicamento</span>
+            <span class="col-cat">Categoría</span>
+            <span class="col-stock">Stock</span>
+            <span class="col-precio">Precio</span>
+            <span class="col-estado">Disponibilidad</span>
+          </div>
+          <div class="table-row" *ngFor="let m of medicamentosFiltrados">
+            <span class="col-med">{{ m.nombre }}</span>
+            <span class="col-cat">{{ m.categoria }}</span>
+            <span class="col-stock">
+              <div class="stock-bar-wrap">
+                {{ m.stock }} und.
+                <div class="stock-bar">
+                  <div class="stock-fill" [style.width.%]="(m.stock / 200) * 100"
+                    [style.background]="m.stock > 20 ? '#10b981' : m.stock > 5 ? '#f59e0b' : '#ef4444'"></div>
+                </div>
+              </div>
+            </span>
+            <span class="col-precio">S/ {{ m.precio }}</span>
+            <span class="col-estado">
+              <span class="badge" [ngClass]="m.stock > 20 ? 'confirmada' : m.stock > 5 ? 'pendiente' : 'cancelada'">
+                {{ m.stock > 20 ? '● Disponible' : m.stock > 5 ? '● Bajo stock' : '● Crítico' }}
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESTADISTICAS -->
+    <div class="seccion" *ngIf="seccionActiva === 'estadisticas'">
+      <div class="stats-grid">
+        <div class="stat-card blue">
+          <div class="stat-top"><div class="stat-icon-wrap">📅</div><span class="stat-trend trend-up">+12%</span></div>
+          <span class="stat-num">248</span>
+          <span class="stat-lbl">Citas este mes</span>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-top"><div class="stat-icon-wrap">😊</div><span class="stat-trend trend-up">96%</span></div>
+          <span class="stat-num">96%</span>
+          <span class="stat-lbl">Satisfacción</span>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-top"><div class="stat-icon-wrap">🔀</div><span class="stat-trend trend-up">+3</span></div>
+          <span class="stat-num">18</span>
+          <span class="stat-lbl">Derivaciones</span>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-top"><div class="stat-icon-wrap">💊</div><span class="stat-trend trend-down">-8%</span></div>
+          <span class="stat-num">34</span>
+          <span class="stat-lbl">Recetas emitidas</span>
+        </div>
+      </div>
+      <div class="section-card">
+        <div class="card-header">
+          <div class="card-title">Diagnósticos más frecuentes</div>
+        </div>
+        <div class="historial-grid">
+          <div class="historial-item" *ngFor="let d of diagnosticosFrecuentes">
+            <span class="historial-fecha">{{ d.porcentaje }}%</span>
+            <span class="historial-dx">{{ d.nombre }}</span>
+            <span class="historial-nota">{{ d.casos }} casos registrados este mes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Chat IA -->
+  <div class="chat-fab" (click)="toggleChat()">
+    <span *ngIf="!chatAbierto">🤖</span>
+    <span *ngIf="chatAbierto">✕</span>
+  </div>
+
+  <div class="chat-panel" *ngIf="chatAbierto">
+    <div class="chat-header">
+      <div class="chat-avatar">🤖</div>
+      <div>
+        <div class="chat-title">Asistente IA Médico</div>
+        <div class="chat-sub">Powered by Claude</div>
+      </div>
+      <div class="chat-status"><div class="chat-dot"></div> En línea</div>
+    </div>
+    <div class="chat-messages">
+      <div class="msg" [ngClass]="m.rol" *ngFor="let m of mensajesChat">
+        <div class="msg-bubble">{{ m.texto }}</div>
+      </div>
+      <div class="msg ia" *ngIf="cargandoIA">
+        <div class="msg-bubble typing">Escribiendo...</div>
+      </div>
+    </div>
+    <div class="chat-sugerencias">
+      <button class="sugerencia" (click)="sugerencia('Redacta una nota médica para hipertensión')">📝 Nota médica</button>
+      <button class="sugerencia" (click)="sugerencia('Resume historial de paciente diabético 60 años')">📋 Resumir historial</button>
+      <button class="sugerencia" (click)="sugerencia('Redacta receta: paracetamol 500mg cada 8h por 5 días')">💊 Receta</button>
+    </div>
+    <div class="chat-input-row">
+      <input class="chat-input" type="text" placeholder="Escribe tu consulta..." [(ngModel)]="mensajeIA" (keyup.enter)="enviarMensajeIA()"/>
+      <button class="chat-send" (click)="enviarMensajeIA()">➤</button>
+    </div>
+  </div>
+
+</div>
