@@ -1,0 +1,378 @@
+<div class="pac-root">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.collapsed]="sidebarCollapsed">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(255,255,255,0.12)"/>
+          <path d="M18 9v18M9 18h18" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="10.5" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+      <span class="sidebar-brand" *ngIf="!sidebarCollapsed">MedSystem</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item" [class.active]="seccionActiva === 'inicio'" (click)="cambiarSeccion('inicio')">
+        <span class="nav-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Mi panel</span>
+      </button>
+      <button class="nav-item" [class.active]="seccionActiva === 'reservar'" (click)="cambiarSeccion('reservar')">
+        <span class="nav-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            <line x1="12" y1="15" x2="12" y2="19"/><line x1="10" y1="17" x2="14" y2="17"/>
+          </svg>
+        </span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Reservar cita</span>
+      </button>
+      <button class="nav-item" [class.active]="seccionActiva === 'recetas'" (click)="cambiarSeccion('recetas')">
+        <span class="nav-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
+          </svg>
+        </span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Mis recetas</span>
+      </button>
+      <button class="nav-item" [class.active]="seccionActiva === 'historial'" (click)="cambiarSeccion('historial')">
+        <span class="nav-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+            <rect x="8" y="2" width="8" height="4" rx="1"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/>
+          </svg>
+        </span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Mi historial</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="pac-info" *ngIf="!sidebarCollapsed">
+        <div class="pac-avatar">AM</div>
+        <div class="pac-text">
+          <span class="pac-name">Ana Martínez</span>
+          <span class="pac-rol">Paciente</span>
+        </div>
+      </div>
+      <button class="collapse-btn" (click)="sidebarCollapsed = !sidebarCollapsed">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline *ngIf="sidebarCollapsed" points="9 18 15 12 9 6"/>
+          <polyline *ngIf="!sidebarCollapsed" points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">{{ tituloSeccion }}</h1>
+        <span class="page-date">{{ fechaHoy }}</span>
+      </div>
+      <div class="topbar-right">
+        <button class="btn-cerrar" (click)="cerrarSesion()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══ INICIO ═══ -->
+    <div class="seccion" *ngIf="seccionActiva === 'inicio'">
+      <div class="bienvenida-card">
+        <div class="bienvenida-text">
+          <h2>¡Hola, Ana! 👋</h2>
+          <p>Aquí tienes un resumen de tu estado de salud y próximas citas.</p>
+        </div>
+        <div class="bienvenida-stats">
+          <div class="bstat">
+            <span class="bstat-num">{{ citasProximas.length }}</span>
+            <span class="bstat-lbl">Citas próximas</span>
+          </div>
+          <div class="bstat-sep"></div>
+          <div class="bstat">
+            <span class="bstat-num">{{ recetas.length }}</span>
+            <span class="bstat-lbl">Recetas activas</span>
+          </div>
+          <div class="bstat-sep"></div>
+          <div class="bstat">
+            <span class="bstat-num">{{ historial.length }}</span>
+            <span class="bstat-lbl">Consultas previas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="section-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Próximas citas</div>
+              <div class="card-subtitle">Citas programadas</div>
+            </div>
+            <button class="btn-sm" (click)="cambiarSeccion('reservar')">+ Nueva cita</button>
+          </div>
+          <div *ngIf="citasProximas.length === 0" class="empty-state">
+            <p>No tienes citas próximas. <span (click)="cambiarSeccion('reservar')">Reserva una ahora.</span></p>
+          </div>
+          <div class="cita-card" *ngFor="let c of citasProximas">
+            <div class="cita-left">
+              <div class="cita-doctor-av">{{ iniciales(c.doctor) }}</div>
+              <div class="cita-info">
+                <span class="cita-doctor">{{ c.doctor }}</span>
+                <span class="cita-esp">{{ c.especialidad }}</span>
+                <span class="cita-motivo">{{ c.motivo }}</span>
+              </div>
+            </div>
+            <div class="cita-right">
+              <div class="cita-fecha-box">
+                <span class="cita-fecha">{{ c.fecha }}</span>
+                <span class="cita-hora">{{ c.hora }}</span>
+              </div>
+              <span class="badge" [ngClass]="c.estado">{{ c.estadoLabel }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Medicamentos actuales</div>
+              <div class="card-subtitle">Recetas vigentes</div>
+            </div>
+            <button class="btn-sm" (click)="cambiarSeccion('recetas')">Ver todas</button>
+          </div>
+          <div class="med-list">
+            <div class="med-item" *ngFor="let r of recetas">
+              <div class="med-icon-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
+                </svg>
+              </div>
+              <div class="med-info">
+                <span class="med-nombre">{{ r.medicamento }}</span>
+                <span class="med-dosis">{{ r.dosis }} · {{ r.duracion }}</span>
+              </div>
+              <span class="badge" [ngClass]="r.activa ? 'confirmada' : 'expirada'">{{ r.activa ? 'Activa' : 'Expirada' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ RESERVAR CITA ═══ -->
+    <div class="seccion" *ngIf="seccionActiva === 'reservar'">
+
+      <div class="success-banner" *ngIf="citaConfirmada">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <strong>¡Cita reservada con éxito!</strong>
+          <p>Tu cita con {{ doctorSeleccionado?.nombre }} fue agendada para el {{ fechaSeleccionada }} a las {{ horaSeleccionada }}.</p>
+        </div>
+      </div>
+
+      <!-- PASO 1: Seleccionar doctor -->
+      <div class="section-card" *ngIf="!citaConfirmada">
+        <div class="stepper">
+          <div class="step" [class.active]="pasoCita >= 1" [class.done]="pasoCita > 1">
+            <div class="step-circle">{{ pasoCita > 1 ? '✓' : '1' }}</div>
+            <span>Seleccionar médico</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step" [class.active]="pasoCita >= 2" [class.done]="pasoCita > 2">
+            <div class="step-circle">{{ pasoCita > 2 ? '✓' : '2' }}</div>
+            <span>Fecha y hora</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step" [class.active]="pasoCita >= 3">
+            <div class="step-circle">3</div>
+            <span>Confirmar</span>
+          </div>
+        </div>
+
+        <!-- Paso 1 -->
+        <div *ngIf="pasoCita === 1">
+          <div class="card-title" style="margin-bottom: 16px;">Elige tu médico</div>
+          <div class="doctor-grid">
+            <div class="doctor-card" *ngFor="let doc of doctores"
+              [class.disabled]="!doc.disponible"
+              [class.selected]="doctorSeleccionado?.id === doc.id"
+              (click)="seleccionarDoctor(doc)">
+              <div class="doc-av">{{ doc.foto }}</div>
+              <div class="doc-info">
+                <span class="doc-name">{{ doc.nombre }}</span>
+                <span class="doc-esp">{{ doc.especialidad }}</span>
+              </div>
+              <span class="doc-status" [ngClass]="doc.disponible ? 'disp' : 'no-disp'">
+                {{ doc.disponible ? 'Disponible' : 'No disponible' }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 2 -->
+        <div *ngIf="pasoCita === 2">
+          <div class="paso2-header">
+            <button class="btn-back" (click)="pasoCita = 1; doctorSeleccionado = null">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              Volver
+            </button>
+            <div class="doc-seleccionado-info">
+              <div class="doc-av sm">{{ doctorSeleccionado.foto }}</div>
+              <div>
+                <span class="doc-name">{{ doctorSeleccionado.nombre }}</span>
+                <span class="doc-esp">{{ doctorSeleccionado.especialidad }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label>Fecha de la cita</label>
+              <input type="date" [(ngModel)]="fechaSeleccionada" [min]="fechaHoy"/>
+            </div>
+            <div class="field">
+              <label>Motivo de consulta</label>
+              <select [(ngModel)]="motivoCita">
+                <option value="">Seleccionar...</option>
+                <option>Control rutinario</option>
+                <option>Primera consulta</option>
+                <option>Revisión de exámenes</option>
+                <option>Seguimiento</option>
+                <option>Dolor o malestar</option>
+              </select>
+            </div>
+          </div>
+
+          <div *ngIf="fechaSeleccionada">
+            <label class="hora-label">Horario disponible</label>
+            <div class="horas-grid">
+              <button class="hora-slot"
+                *ngFor="let h of horasDisponibles"
+                [class.ocupado]="horasOcupadas.includes(h)"
+                [class.selected]="horaSeleccionada === h"
+                [disabled]="horasOcupadas.includes(h)"
+                (click)="seleccionarHora(h)">{{ h }}</button>
+            </div>
+          </div>
+
+          <div class="form-actions" style="margin-top: 24px;">
+            <button class="btn-primary" [disabled]="!fechaSeleccionada || !horaSeleccionada" (click)="pasoCita = 3">Continuar</button>
+            <button class="btn-ghost" (click)="pasoCita = 1; doctorSeleccionado = null">Cancelar</button>
+          </div>
+        </div>
+
+        <!-- Paso 3 -->
+        <div *ngIf="pasoCita === 3" class="confirmar-wrap">
+          <button class="btn-back" (click)="pasoCita = 2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Volver
+          </button>
+          <div class="confirmar-card">
+            <div class="confirmar-title">Resumen de tu cita</div>
+            <div class="confirmar-row">
+              <span class="cr-label">Médico</span>
+              <span class="cr-val">{{ doctorSeleccionado.nombre }} — {{ doctorSeleccionado.especialidad }}</span>
+            </div>
+            <div class="confirmar-row">
+              <span class="cr-label">Fecha</span>
+              <span class="cr-val">{{ fechaSeleccionada }}</span>
+            </div>
+            <div class="confirmar-row">
+              <span class="cr-label">Hora</span>
+              <span class="cr-val">{{ horaSeleccionada }}</span>
+            </div>
+            <div class="confirmar-row">
+              <span class="cr-label">Motivo</span>
+              <span class="cr-val">{{ motivoCita || 'Consulta general' }}</span>
+            </div>
+          </div>
+          <div class="form-actions" style="margin-top: 20px;">
+            <button class="btn-primary" (click)="confirmarCita()">Confirmar reserva</button>
+            <button class="btn-ghost" (click)="pasoCita = 1; doctorSeleccionado = null">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ RECETAS ═══ -->
+    <div class="seccion" *ngIf="seccionActiva === 'recetas'">
+      <div class="section-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Mis recetas médicas</div>
+            <div class="card-subtitle">{{ recetas.length }} prescripciones en tu historial</div>
+          </div>
+        </div>
+        <div class="recetas-list">
+          <div class="receta-item" *ngFor="let r of recetas" (click)="toggleReceta(r)" [class.open]="recetaAbierta === r">
+            <div class="receta-header">
+              <div class="receta-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
+                </svg>
+              </div>
+              <div class="receta-main">
+                <span class="receta-nombre">{{ r.medicamento }}</span>
+                <span class="receta-meta">{{ r.doctor }} · {{ r.fecha }}</span>
+              </div>
+              <div class="receta-right">
+                <span class="badge" [ngClass]="r.activa ? 'confirmada' : 'expirada'">{{ r.activa ? 'Activa' : 'Expirada' }}</span>
+                <svg class="receta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline [attr.points]="recetaAbierta === r ? '18 15 12 9 6 15' : '6 9 12 15 18 9'"/>
+                </svg>
+              </div>
+            </div>
+            <div class="receta-detalle" *ngIf="recetaAbierta === r">
+              <div class="receta-det-row"><span>Dosis</span><strong>{{ r.dosis }}</strong></div>
+              <div class="receta-det-row"><span>Duración</span><strong>{{ r.duracion }}</strong></div>
+              <div class="receta-det-row"><span>Indicaciones</span><strong>{{ r.indicaciones }}</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ HISTORIAL ═══ -->
+    <div class="seccion" *ngIf="seccionActiva === 'historial'">
+      <div class="section-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Mi historial médico</div>
+            <div class="card-subtitle">{{ historial.length }} consultas registradas</div>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item" *ngFor="let h of historial">
+            <div class="timeline-date-col">
+              <div class="tl-date">{{ h.fecha }}</div>
+            </div>
+            <div class="timeline-connector">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="timeline-card">
+              <div class="tl-card-header">
+                <div>
+                  <div class="tl-dx">{{ h.diagnostico }}</div>
+                  <div class="tl-meta">{{ h.doctor }} · {{ h.especialidad }}</div>
+                </div>
+              </div>
+              <p class="tl-nota">{{ h.nota }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>

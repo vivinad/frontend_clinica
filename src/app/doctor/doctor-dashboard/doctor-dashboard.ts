@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class DoctorDashboardComponent implements OnInit {
 
+  Math = Math;
   seccionActiva = 'inicio';
   sidebarCollapsed = false;
   fechaHoy = '';

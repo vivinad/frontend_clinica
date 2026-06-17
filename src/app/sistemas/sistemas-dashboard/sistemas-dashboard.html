@@ -1,0 +1,415 @@
+<div class="sys-root">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.collapsed]="sidebarCollapsed">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(255,255,255,0.12)"/>
+          <path d="M18 9v18M9 18h18" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="10.5" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+      <span class="sidebar-brand" *ngIf="!sidebarCollapsed">MedSystem</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label" *ngIf="!sidebarCollapsed">Administración</span>
+      <button class="nav-item" [class.active]="seccionActiva === 'inicio'" (click)="cambiarSeccion('inicio')">
+        <span class="nav-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+        </span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Panel general</span>
+      </button>
+      <button class="nav-item" [class.active]="seccionActiva === 'doctores'" (click)="cambiarSeccion('doctores')">
+        <span class="nav-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/>
+            <circle cx="12" cy="13" r="3"/>
+          </svg>
+        </span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Doctores</span>
+      </button>
+      <button class="nav-item" [class.active]="seccionActiva === 'pacientes'" (click)="cambiarSeccion('pacientes')">
+        <span class="nav-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Pacientes</span>
+      </button>
+      <button class="nav-item" [class.active]="seccionActiva === 'medicamentos'" (click)="cambiarSeccion('medicamentos')">
+        <span class="nav-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+            <path d="m3.3 7 8.7 5 8.7-5"/><line x1="12" y1="22" x2="12" y2="12"/>
+          </svg>
+        </span>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Medicamentos</span>
+        <span class="nav-alert" *ngIf="!sidebarCollapsed && medCriticos.length > 0">{{ medCriticos.length }}</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="admin-info" *ngIf="!sidebarCollapsed">
+        <div class="admin-avatar">AD</div>
+        <div class="admin-text">
+          <span class="admin-name">Administrador</span>
+          <span class="admin-rol">Sistemas</span>
+        </div>
+      </div>
+      <button class="collapse-btn" (click)="sidebarCollapsed = !sidebarCollapsed">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline *ngIf="sidebarCollapsed" points="9 18 15 12 9 6"/>
+          <polyline *ngIf="!sidebarCollapsed" points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">{{ tituloSeccion }}</h1>
+        <span class="page-date">{{ fechaHoy }}</span>
+      </div>
+      <div class="topbar-right">
+        <button class="btn-cerrar" (click)="cerrarSesion()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══ PANEL GENERAL ═══ -->
+    <div class="seccion" *ngIf="seccionActiva === 'inicio'">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon-box indigo">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/>
+                <circle cx="12" cy="13" r="3"/>
+              </svg>
+            </div>
+            <span class="stat-trend up">{{ doctores.filter(d=>d.estado==='activo').length }} activos</span>
+          </div>
+          <span class="stat-num">{{ doctores.length }}</span>
+          <span class="stat-lbl">Doctores registrados</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon-box blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <span class="stat-trend up">{{ pacientes.filter(p=>p.estado==='activo').length }} activos</span>
+          </div>
+          <span class="stat-num">{{ pacientes.length }}</span>
+          <span class="stat-lbl">Pacientes totales</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon-box green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                <path d="m3.3 7 8.7 5 8.7-5"/><line x1="12" y1="22" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <span class="stat-trend up">{{ medicamentos.length }} productos</span>
+          </div>
+          <span class="stat-num">{{ medicamentos.reduce((a,m)=>a+m.stock,0) }}</span>
+          <span class="stat-lbl">Unidades en inventario</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon-box rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <span class="stat-trend down">Requieren atención</span>
+          </div>
+          <span class="stat-num">{{ medCriticos.length }}</span>
+          <span class="stat-lbl">Alertas de stock</span>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="section-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Doctores activos</div>
+              <div class="card-subtitle">Personal médico registrado</div>
+            </div>
+            <button class="btn-sm" (click)="cambiarSeccion('doctores')">Ver todos</button>
+          </div>
+          <div class="doc-list">
+            <div class="doc-row" *ngFor="let d of doctores.slice(0,4)">
+              <div class="doc-av">{{ d.nombre.split(' ').slice(-1)[0][0] }}{{ d.nombre.split(' ')[1]?.[0] || '' }}</div>
+              <div class="doc-info">
+                <span class="doc-nombre">{{ d.nombre }}</span>
+                <span class="doc-esp">{{ d.especialidad }}</span>
+              </div>
+              <span class="stat-pill">{{ d.pacientes }} pac.</span>
+              <span class="badge" [ngClass]="d.estado === 'activo' ? 'activo' : 'inactivo'">{{ d.estado }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Alertas de inventario</div>
+              <div class="card-subtitle">Medicamentos con stock bajo o crítico</div>
+            </div>
+            <button class="btn-sm-warn" (click)="cambiarSeccion('medicamentos')">Ver inventario</button>
+          </div>
+          <div *ngIf="medCriticos.length === 0" class="empty-state">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Todo el inventario está en niveles óptimos
+          </div>
+          <div class="alert-list">
+            <div class="alert-item" *ngFor="let m of medCriticos">
+              <div class="alert-icon" [ngClass]="m.stock <= 5 ? 'critico' : 'bajo'">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </div>
+              <div class="alert-info">
+                <span class="alert-nombre">{{ m.nombre }}</span>
+                <span class="alert-meta">{{ m.stock }} unidades · Umbral: {{ m.umbral }}</span>
+              </div>
+              <span class="badge" [ngClass]="m.stock <= 5 ? 'cancelada' : 'pendiente'">{{ m.stock <= 5 ? 'Crítico' : 'Bajo stock' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ DOCTORES ═══ -->
+    <div class="seccion" *ngIf="seccionActiva === 'doctores'">
+      <div class="section-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Gestión de doctores</div>
+            <div class="card-subtitle">{{ doctores.length }} doctores registrados</div>
+          </div>
+          <button class="btn-primary" (click)="mostrarFormDoctor = !mostrarFormDoctor">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Añadir doctor
+          </button>
+        </div>
+
+        <div class="form-panel" *ngIf="mostrarFormDoctor">
+          <div class="form-panel-title">Nuevo doctor</div>
+          <div class="form-grid">
+            <div class="field">
+              <label>Nombre completo</label>
+              <input type="text" placeholder="Dr. Nombre Apellido" [(ngModel)]="nuevoDoctor.nombre"/>
+            </div>
+            <div class="field">
+              <label>Especialidad</label>
+              <select [(ngModel)]="nuevoDoctor.especialidad">
+                <option value="">Seleccionar...</option>
+                <option>Medicina General</option><option>Cardiología</option><option>Neurología</option>
+                <option>Traumatología</option><option>Dermatología</option><option>Oftalmología</option>
+                <option>Psiquiatría</option><option>Ginecología</option><option>Pediatría</option><option>Oncología</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Correo electrónico</label>
+              <input type="email" placeholder="doctor@clinica.com" [(ngModel)]="nuevoDoctor.email"/>
+            </div>
+            <div class="field">
+              <label>Teléfono</label>
+              <input type="tel" placeholder="+51 999 999 999" [(ngModel)]="nuevoDoctor.telefono"/>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-primary" (click)="registrarDoctor()">Registrar doctor</button>
+            <button class="btn-ghost" (click)="mostrarFormDoctor = false">Cancelar</button>
+          </div>
+        </div>
+
+        <div class="doctor-table">
+          <div class="dt-head">
+            <span class="dtc-doc">Doctor</span>
+            <span class="dtc-esp">Especialidad</span>
+            <span class="dtc-email">Correo</span>
+            <span class="dtc-pac">Pacientes</span>
+            <span class="dtc-est">Estado</span>
+            <span class="dtc-acc"></span>
+          </div>
+          <div class="dt-row" *ngFor="let d of doctores">
+            <span class="dtc-doc">
+              <div class="doc-av-sm">{{ d.nombre.slice(0,2).toUpperCase() }}</div>
+              <strong>{{ d.nombre }}</strong>
+            </span>
+            <span class="dtc-esp"><span class="esp-tag">{{ d.especialidad }}</span></span>
+            <span class="dtc-email">{{ d.email }}</span>
+            <span class="dtc-pac">{{ d.pacientes }}</span>
+            <span class="dtc-est"><span class="badge" [ngClass]="d.estado">{{ d.estado }}</span></span>
+            <span class="dtc-acc">
+              <button class="toggle-btn" (click)="toggleEstadoDoctor(d)" [title]="d.estado === 'activo' ? 'Desactivar' : 'Activar'">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path *ngIf="d.estado === 'activo'" d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line *ngIf="d.estado === 'activo'" x1="12" y1="2" x2="12" y2="12"/>
+                  <polyline *ngIf="d.estado !== 'activo'" points="20 6 9 17 4 12"/>
+                </svg>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PACIENTES ═══ -->
+    <div class="seccion" *ngIf="seccionActiva === 'pacientes'">
+      <div class="section-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Gestión de pacientes</div>
+            <div class="card-subtitle">{{ pacientes.length }} pacientes en el sistema</div>
+          </div>
+          <div class="search-field">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" placeholder="Buscar paciente o diagnóstico..." [(ngModel)]="busquedaPaciente"/>
+          </div>
+        </div>
+
+        <div class="doctor-table">
+          <div class="dt-head">
+            <span class="dtc-doc">Paciente</span>
+            <span class="dtc-esp">Diagnóstico</span>
+            <span class="dtc-esp">Doctor asignado</span>
+            <span class="dtc-email">Últ. visita</span>
+            <span class="dtc-pac">Edad</span>
+            <span class="dtc-est">Estado</span>
+          </div>
+          <div class="dt-row" *ngFor="let p of pacientesFiltrados">
+            <span class="dtc-doc">
+              <div class="doc-av-sm">{{ iniciales(p.nombre) }}</div>
+              <strong>{{ p.nombre }}</strong>
+            </span>
+            <span class="dtc-esp"><span class="esp-tag">{{ p.diagnostico }}</span></span>
+            <span class="dtc-esp">{{ p.doctor }}</span>
+            <span class="dtc-email">{{ p.ultimaVisita }}</span>
+            <span class="dtc-pac">{{ p.edad }} años</span>
+            <span class="dtc-est"><span class="badge" [ngClass]="p.estado">{{ p.estado }}</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MEDICAMENTOS ═══ -->
+    <div class="seccion" *ngIf="seccionActiva === 'medicamentos'">
+      <div class="alert-banner" *ngIf="medCriticos.length > 0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <strong>{{ medCriticos.length }} medicamento(s) con stock bajo o crítico.</strong>
+        Revisa y actualiza el inventario.
+      </div>
+
+      <div class="section-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Inventario de medicamentos</div>
+            <div class="card-subtitle">{{ medicamentos.length }} productos registrados</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <div class="search-field">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" placeholder="Buscar..." [(ngModel)]="busquedaMed"/>
+            </div>
+            <button class="btn-primary" (click)="mostrarFormMed = !mostrarFormMed">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Añadir
+            </button>
+          </div>
+        </div>
+
+        <div class="form-panel" *ngIf="mostrarFormMed">
+          <div class="form-panel-title">Nuevo medicamento</div>
+          <div class="form-grid">
+            <div class="field">
+              <label>Nombre del medicamento</label>
+              <input type="text" placeholder="Ej: Paracetamol 500mg" [(ngModel)]="nuevoMed.nombre"/>
+            </div>
+            <div class="field">
+              <label>Categoría</label>
+              <select [(ngModel)]="nuevoMed.categoria">
+                <option value="">Seleccionar...</option>
+                <option>Analgésico</option><option>Antibiótico</option><option>Antiinflamatorio</option>
+                <option>Antidiabético</option><option>Antihipertensivo</option><option>Gastroprotector</option>
+                <option>Hipolipemiante</option><option>Antimigranoso</option><option>Otro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Stock inicial (unidades)</label>
+              <input type="number" placeholder="0" [(ngModel)]="nuevoMed.stock"/>
+            </div>
+            <div class="field">
+              <label>Precio unitario (S/)</label>
+              <input type="text" placeholder="0.00" [(ngModel)]="nuevoMed.precio"/>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-primary" (click)="registrarMed()">Guardar medicamento</button>
+            <button class="btn-ghost" (click)="mostrarFormMed = false">Cancelar</button>
+          </div>
+        </div>
+
+        <div class="med-table">
+          <div class="mt-head">
+            <span class="mtc-med">Medicamento</span>
+            <span class="mtc-cat">Categoría</span>
+            <span class="mtc-stock">Stock actual</span>
+            <span class="mtc-precio">Precio</span>
+            <span class="mtc-estado">Estado</span>
+            <span class="mtc-acc">Ajustar</span>
+          </div>
+          <div class="mt-row" *ngFor="let m of medicamentosFiltrados">
+            <span class="mtc-med">
+              <div class="med-dot" [style.background]="m.stock > m.umbral ? '#10b981' : m.stock > Math.floor(m.umbral/4) ? '#f59e0b' : '#ef4444'"></div>
+              {{ m.nombre }}
+            </span>
+            <span class="mtc-cat"><span class="cat-tag">{{ m.categoria }}</span></span>
+            <span class="mtc-stock">
+              <div class="stock-wrap">
+                <span class="stock-num" [ngClass]="m.stock <= 5 ? 'text-red' : m.stock <= m.umbral ? 'text-amber' : ''">{{ m.stock }}</span>
+                <div class="stock-bar">
+                  <div class="stock-fill" [style.width.%]="Math.min((m.stock/200)*100,100)"
+                    [style.background]="m.stock > m.umbral ? '#10b981' : m.stock > Math.floor(m.umbral/4) ? '#f59e0b' : '#ef4444'"></div>
+                </div>
+              </div>
+            </span>
+            <span class="mtc-precio">S/ {{ m.precio }}</span>
+            <span class="mtc-estado">
+              <span class="badge" [ngClass]="m.stock > m.umbral ? 'activo' : m.stock > Math.floor(m.umbral/4) ? 'pendiente' : 'cancelada'">
+                {{ m.stock > m.umbral ? 'Disponible' : m.stock > Math.floor(m.umbral/4) ? 'Bajo stock' : 'Crítico' }}
+              </span>
+            </span>
+            <span class="mtc-acc">
+              <div class="stock-ctrl">
+                <button class="ctrl-btn minus" (click)="agregarStock(m,-10)" title="Reducir 10">-10</button>
+                <button class="ctrl-btn plus" (click)="agregarStock(m,50)" title="Añadir 50">+50</button>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
