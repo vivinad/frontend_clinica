@@ -1,0 +1,105 @@
+<div class="lp-page">
+  <!-- NAV -->
+  <nav class="lp-nav">
+    <div class="lp-nav-brand">
+      <svg width="26" height="26" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+      <span>MedSystem</span>
+    </div>
+    <div class="lp-nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#testimonios">Testimonios</a>
+      <button class="lp-btn-nav" (click)="irAlLogin()">Iniciar sesión</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="lp-hero">
+    <div class="lp-hero-content">
+      <span class="lp-hero-badge">Tu salud, nuestra prioridad</span>
+      <h1 class="lp-hero-title">Gestiona tu salud<br><span class="lp-hero-accent">de forma inteligente</span></h1>
+      <p class="lp-hero-desc">Reserva citas, accede a tu historial médico y recibe recordatorios automáticos. Todo desde un solo lugar, disponible las 24 horas.</p>
+      <div class="lp-hero-btns">
+        <button class="lp-btn-primary" (click)="irAlLogin()">Agendar cita ahora</button>
+        <button class="lp-btn-secondary" (click)="irAlLogin()">Ver mis citas</button>
+      </div>
+      <div class="lp-hero-stats">
+        <div class="lp-hs"><strong>+2,500</strong><span>Pacientes activos</span></div>
+        <div class="lp-hs-sep"></div>
+        <div class="lp-hs"><strong>20+</strong><span>Especialidades</span></div>
+        <div class="lp-hs-sep"></div>
+        <div class="lp-hs"><strong>98%</strong><span>Satisfacción</span></div>
+      </div>
+    </div>
+    <div class="lp-hero-visual">
+      <div class="lp-hero-card">
+        <div class="lp-hc-top">
+          <div class="lp-hc-avatar">MC</div>
+          <div>
+            <div class="lp-hc-name">María Castillo</div>
+            <div class="lp-hc-sub">Próxima cita</div>
+          </div>
+        </div>
+        <div class="lp-hc-info">
+          <div class="lp-hc-row">
+            <svg width="14" height="14" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span>Miércoles 25 de junio, 2026</span>
+          </div>
+          <div class="lp-hc-row">
+            <svg width="14" height="14" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span>10:30 AM — Dr. Ramírez</span>
+          </div>
+          <div class="lp-hc-row">
+            <svg width="14" height="14" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Medicina General — Confirmada</span>
+          </div>
+        </div>
+        <div class="lp-hc-badge">Recordatorio enviado ✓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="lp-servicios" id="servicios">
+    <h2 class="lp-section-title">¿Qué puedes hacer?</h2>
+    <p class="lp-section-sub">Todo lo que necesitas para gestionar tu salud en un solo sistema</p>
+    <div class="lp-servicios-grid">
+      <div class="lp-servicio-card" *ngFor="let s of servicios">
+        <div class="lp-serv-icon">
+          <svg width="24" height="24" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><path [attr.d]="s.icono"/></svg>
+        </div>
+        <h3>{{ s.titulo }}</h3>
+        <p>{{ s.desc }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="lp-testimonios" id="testimonios">
+    <h2 class="lp-section-title lp-white">Lo que dicen nuestros pacientes</h2>
+    <div class="lp-test-grid">
+      <div class="lp-test-card" *ngFor="let t of testimonios">
+        <p class="lp-test-texto">"{{ t.texto }}"</p>
+        <div class="lp-test-autor">
+          <div class="lp-test-avatar">{{ t.iniciales }}</div>
+          <div>
+            <div class="lp-test-nombre">{{ t.nombre }}</div>
+            <div class="lp-test-cargo">{{ t.cargo }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="lp-cta">
+    <h2>¿Listo para cuidar tu salud?</h2>
+    <p>Únete a más de 2,500 pacientes que ya gestionan su salud con MedSystem</p>
+    <button class="lp-btn-primary lp-btn-large" (click)="irAlLogin()">Comenzar ahora — Es gratis</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="lp-footer">
+    <span>© 2026 MedSystem — Clínica Digital</span>
+    <span>Todos los derechos reservados</span>
+  </footer>
+</div>

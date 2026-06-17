@@ -1,0 +1,110 @@
+<div class="ad-layout">
+  <!-- Sidebar -->
+  <aside class="ad-sidebar">
+    <div class="ad-brand">
+      <svg width="28" height="28" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      <span>Analytics Clínica</span>
+    </div>
+    <nav class="ad-nav">
+      <button class="ad-nav-item" [class.active]="seccionActiva==='resumen'" (click)="seccionActiva='resumen'">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Resumen
+      </button>
+      <button class="ad-nav-item" [class.active]="seccionActiva==='graficos'" (click)="seccionActiva='graficos'">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        Gráficos
+      </button>
+    </nav>
+    <button class="ad-back-btn" (click)="volver()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Volver al inicio
+    </button>
+  </aside>
+
+  <!-- Main -->
+  <main class="ad-main">
+    <header class="ad-header">
+      <div>
+        <h1 class="ad-title">Dashboard de Analítica</h1>
+        <p class="ad-subtitle">{{ fechaHoy }}</p>
+      </div>
+      <div class="ad-badge">Clínica MedSystem</div>
+    </header>
+
+    <!-- Stats -->
+    <div class="ad-stats">
+      <div class="ad-stat-card" *ngFor="let s of stats">
+        <div class="ad-stat-icon" [style.background]="s.bg">
+          <svg width="22" height="22" fill="none" [attr.stroke]="s.color" stroke-width="2" viewBox="0 0 24 24"><path [attr.d]="s.icono"/></svg>
+        </div>
+        <div>
+          <div class="ad-stat-valor" [style.color]="s.color">{{ s.valor }}</div>
+          <div class="ad-stat-label">{{ s.label }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts grid -->
+    <div class="ad-charts-grid">
+      <!-- Chart 1: Citas en el tiempo -->
+      <div class="ad-chart-card ad-chart-wide">
+        <div class="ad-chart-header">
+          <div>
+            <h3>Evolución de Citas</h3>
+            <p>Citas agendadas vs completadas (últimos 6 meses)</p>
+          </div>
+          <span class="ad-chart-tag">Tendencia</span>
+        </div>
+        <canvas #chartCitas></canvas>
+        <div class="ad-chart-insight">
+          <strong>Decisión:</strong> La tendencia ascendente indica crecimiento sostenido. Se recomienda contratar un médico adicional en Medicina General para el siguiente trimestre.
+        </div>
+      </div>
+
+      <!-- Chart 2: Conversión -->
+      <div class="ad-chart-card">
+        <div class="ad-chart-header">
+          <div>
+            <h3>Conversión de Clientes</h3>
+            <p>Estado final de las citas del mes</p>
+          </div>
+          <span class="ad-chart-tag ad-tag-purple">Conversión</span>
+        </div>
+        <canvas #chartConversion></canvas>
+        <div class="ad-chart-insight">
+          <strong>Decisión:</strong> Con 84.5% de conversión, el servicio es eficiente. El 9.4% de cancelaciones sugiere implementar recordatorios automáticos por SMS.
+        </div>
+      </div>
+
+      <!-- Chart 3: Especialidades -->
+      <div class="ad-chart-card">
+        <div class="ad-chart-header">
+          <div>
+            <h3>Citas por Especialidad</h3>
+            <p>Demanda por área médica este mes</p>
+          </div>
+          <span class="ad-chart-tag ad-tag-green">Demanda</span>
+        </div>
+        <canvas #chartEspecialidades></canvas>
+        <div class="ad-chart-insight">
+          <strong>Decisión:</strong> Medicina General concentra el 37% de la demanda. Ampliar horarios en esa especialidad incrementaría la capacidad de atención.
+        </div>
+      </div>
+
+      <!-- Chart 4: Satisfacción -->
+      <div class="ad-chart-card">
+        <div class="ad-chart-header">
+          <div>
+            <h3>Satisfacción del Paciente</h3>
+            <p>Promedio de evaluaciones por categoría</p>
+          </div>
+          <span class="ad-chart-tag ad-tag-yellow">Calidad</span>
+        </div>
+        <canvas #chartSatisfaccion></canvas>
+        <div class="ad-chart-insight">
+          <strong>Decisión:</strong> La puntualidad (4.2) y el precio (4.0) son los aspectos más bajos. Se recomienda revisar tiempos de espera y evaluar planes de pago flexibles.
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

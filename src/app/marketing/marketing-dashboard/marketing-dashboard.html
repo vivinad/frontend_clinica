@@ -1,0 +1,104 @@
+<div class="md-layout">
+  <!-- Sidebar -->
+  <aside class="md-sidebar">
+    <div class="md-brand">
+      <svg width="28" height="28" fill="none" stroke="#7C3AED" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+      <span>Marketing</span>
+    </div>
+    <nav class="md-nav">
+      <button class="md-nav-item active">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        Resumen
+      </button>
+    </nav>
+    <button class="md-back-btn" (click)="volver()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Volver al inicio
+    </button>
+  </aside>
+
+  <!-- Main -->
+  <main class="md-main">
+    <header class="md-header">
+      <div>
+        <h1 class="md-title">Dashboard de Marketing</h1>
+        <p class="md-subtitle">{{ fechaHoy }}</p>
+      </div>
+      <div class="md-badge">Estrategia Digital</div>
+    </header>
+
+    <!-- Stats -->
+    <div class="md-stats">
+      <div class="md-stat-card" *ngFor="let s of stats">
+        <div class="md-stat-top">
+          <span class="md-stat-label">{{ s.label }}</span>
+          <span class="md-stat-cambio" [class.positivo]="s.positivo">{{ s.cambio }}</span>
+        </div>
+        <div class="md-stat-valor" [style.color]="s.color">{{ s.valor }}</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="md-charts-grid">
+      <!-- Chart 1: Canales de adquisición -->
+      <div class="md-chart-card">
+        <div class="md-chart-header">
+          <div>
+            <h3>Canales de Adquisición</h3>
+            <p>Origen de nuevos pacientes este mes</p>
+          </div>
+          <span class="md-tag md-tag-blue">Canales</span>
+        </div>
+        <canvas #chartCanales></canvas>
+        <div class="md-insight">
+          <strong>Decisión:</strong> Redes sociales lidera con 34% de captación. Aumentar el presupuesto en Instagram y Facebook podría incrementar los nuevos registros en un 20% adicional.
+        </div>
+      </div>
+
+      <!-- Chart 2: Conversión (visitantes → pacientes) -->
+      <div class="md-chart-card">
+        <div class="md-chart-header">
+          <div>
+            <h3>Conversión Digital</h3>
+            <p>Visitantes web vs nuevos pacientes registrados</p>
+          </div>
+          <span class="md-tag md-tag-purple">Conversión</span>
+        </div>
+        <canvas #chartConversion></canvas>
+        <div class="md-insight">
+          <strong>Decisión:</strong> La tasa de conversión promedio es 10.6%. Mejorar el formulario de registro y agregar chat en vivo podría elevarla al 15%.
+        </div>
+      </div>
+
+      <!-- Chart 3: Retención -->
+      <div class="md-chart-card">
+        <div class="md-chart-header">
+          <div>
+            <h3>Retención de Pacientes</h3>
+            <p>Porcentaje de pacientes que regresan mensualmente</p>
+          </div>
+          <span class="md-tag md-tag-yellow">Retención</span>
+        </div>
+        <canvas #chartRetencion></canvas>
+        <div class="md-insight">
+          <strong>Decisión:</strong> La retención del 91.2% es excelente. Implementar un programa de fidelización con descuentos para citas recurrentes podría llevarla al 95%.
+        </div>
+      </div>
+
+      <!-- Chart 4: Ingresos -->
+      <div class="md-chart-card">
+        <div class="md-chart-header">
+          <div>
+            <h3>Evolución de Ingresos</h3>
+            <p>Ingresos mensuales en soles (S/)</p>
+          </div>
+          <span class="md-tag md-tag-green">Ingresos</span>
+        </div>
+        <canvas #chartIngresos></canvas>
+        <div class="md-insight">
+          <strong>Decisión:</strong> Crecimiento constante de 48% en 6 meses. El ritmo actual proyecta superar S/ 60,000 en agosto si se mantiene la estrategia digital.
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
