@@ -15,6 +15,7 @@ export class SistemasDashboardComponent implements OnInit {
   Math = Math;
   seccionActiva = 'inicio';
   sidebarCollapsed = false;
+  mobileMenuOpen = false;
   fechaHoy = '';
 
   get tituloSeccion(): string {
@@ -29,6 +30,7 @@ export class SistemasDashboardComponent implements OnInit {
     this.seccionActiva = s;
     this.mostrarFormDoctor = false;
     this.mostrarFormMed = false;
+    this.mobileMenuOpen = false;
   }
 
   constructor(public router: Router) {}
