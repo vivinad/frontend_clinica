@@ -135,5 +135,5 @@ export class MarketingDashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  volver() { this.router.navigate(['/login']); }
+  volver() { this.router.navigate(['/sistemas/dashboard']); }
 }
