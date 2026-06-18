@@ -1,7 +1,7 @@
 <div class="auth-root">
 
-  <!-- Panel izquierdo decorativo -->
-  <div class="auth-left">
+  <!-- Panel izquierdo -->
+  <div class="auth-left d-none d-lg-flex flex-column">
     <div class="auth-brand">
       <div class="auth-logo">
         <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
@@ -12,106 +12,88 @@
       </div>
       <span class="brand-name">MedSystem</span>
     </div>
-
     <div class="auth-hero">
       <h2 class="auth-hero-title">Gestión clínica<br>en un solo lugar</h2>
       <p class="auth-hero-sub">Centraliza pacientes, citas y expedientes médicos con una plataforma pensada para profesionales de la salud.</p>
     </div>
-
     <div class="auth-features">
       <div class="auth-feature">
-        <div class="af-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
-            <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-          </svg>
-        </div>
+        <div class="af-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
         <span>Agenda de citas en tiempo real</span>
       </div>
       <div class="auth-feature">
-        <div class="af-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-            <rect x="8" y="2" width="8" height="4" rx="1"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/>
-          </svg>
-        </div>
+        <div class="af-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></div>
         <span>Historial médico digital completo</span>
       </div>
       <div class="auth-feature">
-        <div class="af-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
-          </svg>
-        </div>
+        <div class="af-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/></svg></div>
         <span>Recetas y derivaciones digitales</span>
       </div>
       <div class="auth-feature">
-        <div class="af-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
-            <path d="m3.3 7 8.7 5 8.7-5"/><line x1="12" y1="22" x2="12" y2="12"/>
-          </svg>
-        </div>
+        <div class="af-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><line x1="12" y1="22" x2="12" y2="12"/></svg></div>
         <span>Inventario de medicamentos</span>
       </div>
     </div>
-
-    <!-- Decorative shapes -->
     <div class="deco-circle deco-1"></div>
     <div class="deco-circle deco-2"></div>
     <div class="deco-circle deco-3"></div>
   </div>
 
-  <!-- Panel derecho con el formulario -->
+  <!-- Panel derecho -->
   <div class="auth-right">
     <div class="auth-form-wrap">
+
+      <!-- Logo móvil -->
+      <div class="d-flex d-lg-none align-items-center gap-2 mb-4">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="10" fill="#2563EB"/>
+          <path d="M18 9v18M9 18h18" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <span class="fw-bold fs-5">MedSystem</span>
+      </div>
 
       <div class="form-top">
         <h1 class="form-title">Bienvenido de nuevo</h1>
         <p class="form-sub">Ingresa tus credenciales para acceder al sistema</p>
       </div>
 
-      <div class="field">
-        <label class="field-label">Correo electrónico</label>
-        <div class="input-wrap">
-          <span class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            </svg>
+      <!-- Input group usuario -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold small">Correo electrónico</label>
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           </span>
-          <input class="field-input" type="text" placeholder="usuario@clinica.com" [(ngModel)]="usuario"/>
+          <input class="form-control border-start-0 ps-0" type="text" placeholder="usuario@clinica.com" [(ngModel)]="usuario" aria-label="Correo electrónico"/>
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">
-          Contraseña
-          <span class="forgot-link">¿Olvidaste tu contraseña?</span>
-        </label>
-        <div class="input-wrap">
-          <span class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-            </svg>
+      <!-- Input group contraseña -->
+      <div class="mb-3">
+        <div class="d-flex justify-content-between">
+          <label class="form-label fw-semibold small">Contraseña</label>
+          <span class="forgot-link small">¿Olvidaste tu contraseña?</span>
+        </div>
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.75"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </span>
-          <input class="field-input" type="password" placeholder="••••••••" [(ngModel)]="password" (keyup.enter)="ingresar()"/>
+          <input class="form-control border-start-0 ps-0" type="password" placeholder="••••••••" [(ngModel)]="password" (keyup.enter)="ingresar()" aria-label="Contraseña"/>
         </div>
       </div>
 
-      <p class="error-msg" *ngIf="error">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-        </svg>
+      <!-- Alert error -->
+      <div class="alert alert-danger d-flex align-items-center gap-2 py-2 small" *ngIf="error" role="alert">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         {{ error }}
-      </p>
+      </div>
 
-      <button class="btn-login" (click)="ingresar()">
+      <button class="btn btn-primary w-100 py-2 mb-3 d-flex align-items-center justify-content-center gap-2" (click)="ingresar()">
         Iniciar sesión
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-        </svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
 
+      <!-- Demo pills -->
       <div class="demo-hint">
         <span class="demo-label">Cuentas demo</span>
         <div class="demo-pills">
@@ -121,6 +103,7 @@
         </div>
       </div>
 
+      <!-- Landing links -->
       <div class="landing-links">
         <span class="landing-label">¿Primera vez aquí?</span>
         <div class="landing-btns">

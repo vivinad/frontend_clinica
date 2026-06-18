@@ -93,6 +93,12 @@
   <main class="main">
     <div class="topbar">
       <div class="topbar-left">
+        <nav aria-label="breadcrumb" class="mb-1">
+          <ol class="breadcrumb mb-0" style="font-size:12px">
+            <li class="breadcrumb-item"><a href="#" class="text-decoration-none" style="color:#4F46E5">Inicio</a></li>
+            <li class="breadcrumb-item active">{{ tituloSeccion }}</li>
+          </ol>
+        </nav>
         <h1 class="page-title">{{ tituloSeccion }}</h1>
         <span class="page-date">{{ fechaHoy }}</span>
       </div>
@@ -430,4 +436,35 @@
     </div>
 
   </main>
+</div>
+
+<!-- MODAL Bootstrap: Confirmación cerrar sesión -->
+<div class="modal fade" id="modalCerrarSesion" tabindex="-1" aria-labelledby="modalCerrarLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 border-0 shadow">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title fw-bold" id="modalCerrarLabel">¿Cerrar sesión?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body py-3 text-muted">
+        ¿Estás seguro de que deseas cerrar sesión del sistema de administración?
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-light rounded-3" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger rounded-3" (click)="cerrarSesion()" data-bs-dismiss="modal">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST Bootstrap: Notificación -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index:9999">
+  <div id="toastSistemas" class="toast align-items-center text-bg-success border-0 rounded-4" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body fw-semibold">
+        ✓ Cambio guardado correctamente
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+    </div>
+  </div>
 </div>

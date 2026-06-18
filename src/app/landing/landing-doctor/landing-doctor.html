@@ -1,71 +1,85 @@
 <div class="ld-page">
-  <!-- NAV -->
-  <nav class="ld-nav">
-    <div class="ld-nav-brand">
-      <svg width="26" height="26" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
-      <span>MedSystem <span class="ld-nav-pro">Pro</span></span>
-    </div>
-    <div class="ld-nav-links">
-      <a href="#beneficios">Beneficios</a>
-      <a href="#especialidades">Especialidades</a>
-      <button class="ld-btn-nav" (click)="irAlLogin()">Acceso médicos</button>
+
+  <!-- NAVBAR Bootstrap -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="#">
+        <svg width="26" height="26" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        MedSystem
+        <span class="badge bg-primary ms-1">Pro</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navDoctor">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navDoctor">
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
+          <li class="nav-item"><a class="nav-link" href="#beneficios">Beneficios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#especialidades">Especialidades</a></li>
+          <li class="nav-item">
+            <button class="btn btn-primary btn-sm px-3" (click)="irAlLogin()">Acceso médicos</button>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
+  <!-- ALERTA -->
+  <div class="alert alert-primary alert-dismissible fade show mb-0 rounded-0 text-center small py-2" role="alert">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-1"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    Plataforma diseñada para profesionales de salud. Accesible desde cualquier dispositivo.
+    <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  </div>
+
   <!-- HERO -->
   <section class="ld-hero">
-    <div class="ld-hero-content">
-      <span class="ld-hero-badge">Plataforma para profesionales de salud</span>
-      <h1 class="ld-hero-title">Enfócate en<br><span class="ld-hero-accent">curar, no en papeles</span></h1>
-      <p class="ld-hero-desc">MedSystem Pro automatiza la gestión administrativa de tu consulta. Historial digital, citas online y recetas electrónicas integradas en un solo sistema.</p>
-      <div class="ld-hero-btns">
-        <button class="ld-btn-primary" (click)="irAlLogin()">Acceder a mi panel</button>
-        <button class="ld-btn-ghost" (click)="irAlLogin()">Ver demo</button>
-      </div>
-      <div class="ld-hero-chips">
-        <span class="ld-chip">✓ Sin instalación</span>
-        <span class="ld-chip">✓ Acceso 24/7</span>
-        <span class="ld-chip">✓ Datos seguros</span>
-      </div>
-    </div>
-
-    <div class="ld-hero-panel">
-      <div class="ld-panel-header">
-        <div class="ld-panel-dot red"></div>
-        <div class="ld-panel-dot yellow"></div>
-        <div class="ld-panel-dot green"></div>
-        <span class="ld-panel-title">Panel del Dr. Ramírez — Hoy</span>
-      </div>
-      <div class="ld-panel-body">
-        <div class="ld-panel-stat-row">
-          <div class="ld-ps"><div class="ld-ps-n" style="color:#2563EB">12</div><div class="ld-ps-l">Citas hoy</div></div>
-          <div class="ld-ps"><div class="ld-ps-n" style="color:#059669">8</div><div class="ld-ps-l">Atendidas</div></div>
-          <div class="ld-ps"><div class="ld-ps-n" style="color:#D97706">4</div><div class="ld-ps-l">Pendientes</div></div>
+    <div class="container">
+      <div class="row align-items-center g-5 py-5">
+        <div class="col-lg-6">
+          <span class="badge bg-primary bg-opacity-10 text-primary fs-6 px-3 py-2 mb-3 rounded-pill">Plataforma para profesionales de salud</span>
+          <h1 class="display-5 fw-bold lh-sm mb-3">Enfócate en<br><span class="text-primary">curar, no en papeles</span></h1>
+          <p class="lead text-muted mb-4">MedSystem Pro automatiza la gestión administrativa de tu consulta. Historial digital, citas online y recetas electrónicas integradas en un solo sistema.</p>
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <button class="btn btn-primary btn-lg px-4" (click)="irAlLogin()">Acceder a mi panel</button>
+            <button class="btn btn-outline-primary btn-lg px-4" (click)="irAlLogin()">Ver demo</button>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge bg-light text-primary border border-primary-subtle px-3 py-2">✓ Sin instalación</span>
+            <span class="badge bg-light text-primary border border-primary-subtle px-3 py-2">✓ Acceso 24/7</span>
+            <span class="badge bg-light text-primary border border-primary-subtle px-3 py-2">✓ Datos seguros</span>
+          </div>
         </div>
-        <div class="ld-panel-citas">
-          <div class="ld-cita">
-            <div class="ld-cita-hora">10:00</div>
-            <div class="ld-cita-info">
-              <div class="ld-cita-nombre">María García</div>
-              <div class="ld-cita-motivo">Control mensual · Hipertensión</div>
+        <div class="col-lg-6 d-flex justify-content-center">
+          <div class="ld-hero-panel rounded-4 overflow-hidden shadow-lg" style="max-width:400px;width:100%">
+            <div class="ld-panel-header px-3 py-2 d-flex align-items-center gap-2">
+              <div class="ld-panel-dot red"></div>
+              <div class="ld-panel-dot yellow"></div>
+              <div class="ld-panel-dot green"></div>
+              <span class="ld-panel-title ms-2">Panel del Dr. Ramírez — Hoy</span>
             </div>
-            <span class="ld-cita-badge done">Atendida</span>
-          </div>
-          <div class="ld-cita">
-            <div class="ld-cita-hora">11:30</div>
-            <div class="ld-cita-info">
-              <div class="ld-cita-nombre">Carlos Mendoza</div>
-              <div class="ld-cita-motivo">Primera consulta · Diabetes</div>
+            <div class="p-4">
+              <div class="d-flex justify-content-around bg-white bg-opacity-10 rounded-3 p-3 mb-3">
+                <div class="text-center"><div class="fw-bold fs-4" style="color:#2563EB">12</div><small class="text-secondary">Citas hoy</small></div>
+                <div class="text-center"><div class="fw-bold fs-4" style="color:#059669">8</div><small class="text-secondary">Atendidas</small></div>
+                <div class="text-center"><div class="fw-bold fs-4" style="color:#D97706">4</div><small class="text-secondary">Pendientes</small></div>
+              </div>
+              <div class="d-flex flex-column gap-2">
+                <div class="d-flex align-items-center gap-2 rounded-3 p-2" style="background:rgba(255,255,255,0.07)">
+                  <span class="text-secondary small" style="font-family:monospace;min-width:36px">10:00</span>
+                  <div class="flex-grow-1"><div class="fw-semibold text-light small">María García</div><div class="text-secondary" style="font-size:11px">Control mensual · Hipertensión</div></div>
+                  <span class="badge" style="background:rgba(5,150,105,0.2);color:#34D399">Atendida</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 rounded-3 p-2" style="background:rgba(255,255,255,0.07)">
+                  <span class="text-secondary small" style="font-family:monospace;min-width:36px">11:30</span>
+                  <div class="flex-grow-1"><div class="fw-semibold text-light small">Carlos Mendoza</div><div class="text-secondary" style="font-size:11px">Primera consulta · Diabetes</div></div>
+                  <span class="badge" style="background:rgba(245,158,11,0.2);color:#FCD34D">Pendiente</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 rounded-3 p-2" style="background:rgba(255,255,255,0.07)">
+                  <span class="text-secondary small" style="font-family:monospace;min-width:36px">12:00</span>
+                  <div class="flex-grow-1"><div class="fw-semibold text-light small">Ana Torres</div><div class="text-secondary" style="font-size:11px">Revisión resultados</div></div>
+                  <span class="badge" style="background:rgba(245,158,11,0.2);color:#FCD34D">Pendiente</span>
+                </div>
+              </div>
             </div>
-            <span class="ld-cita-badge pending">Pendiente</span>
-          </div>
-          <div class="ld-cita">
-            <div class="ld-cita-hora">12:00</div>
-            <div class="ld-cita-info">
-              <div class="ld-cita-nombre">Ana Torres</div>
-              <div class="ld-cita-motivo">Revisión resultados</div>
-            </div>
-            <span class="ld-cita-badge pending">Pendiente</span>
           </div>
         </div>
       </div>
@@ -73,41 +87,91 @@
   </section>
 
   <!-- BENEFICIOS -->
-  <section class="ld-beneficios" id="beneficios">
-    <h2 class="ld-section-title">Diseñado para médicos</h2>
-    <p class="ld-section-sub">Herramientas que simplifican tu día a día clínico</p>
-    <div class="ld-ben-grid">
-      <div class="ld-ben-card" *ngFor="let b of beneficios">
-        <div class="ld-ben-icon">
-          <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24"><path [attr.d]="b.icono"/></svg>
+  <section class="py-5 bg-white" id="beneficios">
+    <div class="container text-center">
+      <nav aria-label="breadcrumb" class="d-flex justify-content-center mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#" class="text-primary text-decoration-none">Inicio</a></li>
+          <li class="breadcrumb-item active">Beneficios</li>
+        </ol>
+      </nav>
+      <h2 class="fw-bold mb-2">Diseñado para médicos</h2>
+      <p class="text-muted mb-5">Herramientas que simplifican tu día a día clínico</p>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3" *ngFor="let b of beneficios">
+          <div class="card h-100 border-0 shadow-sm rounded-4 text-start p-1 ld-card-hover">
+            <div class="card-body p-4">
+              <div class="bg-primary bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center mb-3" style="width:48px;height:48px">
+                <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24"><path [attr.d]="b.icono"/></svg>
+              </div>
+              <h5 class="fw-bold mb-2">{{ b.titulo }}</h5>
+              <p class="text-muted small mb-0">{{ b.desc }}</p>
+            </div>
+          </div>
         </div>
-        <h3>{{ b.titulo }}</h3>
-        <p>{{ b.desc }}</p>
       </div>
     </div>
   </section>
 
   <!-- ESPECIALIDADES -->
-  <section class="ld-especialidades" id="especialidades">
-    <h2 class="ld-section-title">Especialidades disponibles</h2>
-    <p class="ld-section-sub">Más de 20 especialidades médicas integradas en el sistema</p>
-    <div class="ld-esp-grid">
-      <div class="ld-esp-chip" *ngFor="let e of especialidades">{{ e }}</div>
+  <section class="py-5 bg-light" id="especialidades">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-2">Especialidades disponibles</h2>
+      <p class="text-muted mb-4">Más de 20 especialidades médicas integradas en el sistema</p>
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        <span class="badge rounded-pill border border-primary text-primary bg-white px-3 py-2 fs-6" *ngFor="let e of especialidades">{{ e }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRESO -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6">
+          <h2 class="fw-bold mb-4">Métricas del sistema</h2>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1"><span class="fw-semibold small">Doctores activos</span><span class="badge bg-primary">92%</span></div>
+            <div class="progress rounded-pill" style="height:10px"><div class="progress-bar bg-primary" style="width:92%"></div></div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1"><span class="fw-semibold small">Citas atendidas hoy</span><span class="badge bg-success">67%</span></div>
+            <div class="progress rounded-pill" style="height:10px"><div class="progress-bar bg-success" style="width:67%"></div></div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1"><span class="fw-semibold small">Satisfacción médicos</span><span class="badge bg-warning text-dark">88%</span></div>
+            <div class="progress rounded-pill" style="height:10px"><div class="progress-bar bg-warning" style="width:88%"></div></div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex flex-column gap-3">
+          <div class="alert alert-primary rounded-4 d-flex gap-2" role="alert">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="flex-shrink-0 mt-1"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div>Accede a tus pacientes desde <strong>cualquier dispositivo</strong> con conexión a internet.</div>
+          </div>
+          <div class="alert alert-success rounded-4 d-flex gap-2" role="alert">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="flex-shrink-0 mt-1"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <div>Todos los datos están <strong>cifrados y protegidos</strong> bajo normativa de salud.</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="ld-cta">
-    <div class="ld-cta-box">
-      <h2>¿Eres médico en nuestra clínica?</h2>
-      <p>Tu acceso ya está listo. Ingresa con tus credenciales y empieza a gestionar tus citas hoy.</p>
-      <button class="ld-btn-primary ld-btn-large" (click)="irAlLogin()">Ingresar al sistema</button>
+  <section class="py-5 text-center" style="background:linear-gradient(135deg,#1E40AF,#2563EB)">
+    <div class="container">
+      <h2 class="fw-bold text-white mb-3">¿Eres médico en nuestra clínica?</h2>
+      <p class="text-white opacity-75 mb-4">Tu acceso ya está listo. Ingresa con tus credenciales y empieza a gestionar tus citas hoy.</p>
+      <button class="btn btn-light btn-lg px-5 py-3 rounded-pill text-primary fw-bold shadow" (click)="irAlLogin()">Ingresar al sistema</button>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="ld-footer">
-    <span>© 2026 MedSystem Pro — Para profesionales de salud</span>
-    <span>Todos los derechos reservados</span>
+  <footer class="bg-dark text-secondary py-3">
+    <div class="container d-flex justify-content-between flex-wrap gap-2 small">
+      <span>© 2026 MedSystem Pro — Para profesionales de salud</span>
+      <span>Todos los derechos reservados</span>
+    </div>
   </footer>
+
 </div>

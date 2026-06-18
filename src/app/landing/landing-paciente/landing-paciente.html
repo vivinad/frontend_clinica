@@ -1,89 +1,168 @@
 <div class="lp-page">
-  <!-- NAV -->
-  <nav class="lp-nav">
-    <div class="lp-nav-brand">
-      <svg width="26" height="26" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-      <span>MedSystem</span>
-    </div>
-    <div class="lp-nav-links">
-      <a href="#servicios">Servicios</a>
-      <a href="#testimonios">Testimonios</a>
-      <button class="lp-btn-nav" (click)="irAlLogin()">Iniciar sesión</button>
+
+  <!-- NAVBAR Bootstrap -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="#">
+        <svg width="26" height="26" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        MedSystem
+        <span class="badge bg-success ms-1">Pacientes</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navPaciente">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navPaciente">
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
+          <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonios">Testimonios</a></li>
+          <li class="nav-item">
+            <button class="btn btn-success btn-sm px-3" (click)="irAlLogin()">Iniciar sesión</button>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
+  <!-- ALERTA accesibilidad -->
+  <div class="alert alert-info alert-dismissible fade show mb-0 rounded-0 text-center small py-2" role="alert">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-1"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    Sitio optimizado para todos los usuarios. Compatible con lectores de pantalla y navegación por teclado.
+    <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  </div>
+
   <!-- HERO -->
   <section class="lp-hero">
-    <div class="lp-hero-content">
-      <span class="lp-hero-badge">Tu salud, nuestra prioridad</span>
-      <h1 class="lp-hero-title">Gestiona tu salud<br><span class="lp-hero-accent">de forma inteligente</span></h1>
-      <p class="lp-hero-desc">Reserva citas, accede a tu historial médico y recibe recordatorios automáticos. Todo desde un solo lugar, disponible las 24 horas.</p>
-      <div class="lp-hero-btns">
-        <button class="lp-btn-primary" (click)="irAlLogin()">Agendar cita ahora</button>
-        <button class="lp-btn-secondary" (click)="irAlLogin()">Ver mis citas</button>
-      </div>
-      <div class="lp-hero-stats">
-        <div class="lp-hs"><strong>+2,500</strong><span>Pacientes activos</span></div>
-        <div class="lp-hs-sep"></div>
-        <div class="lp-hs"><strong>20+</strong><span>Especialidades</span></div>
-        <div class="lp-hs-sep"></div>
-        <div class="lp-hs"><strong>98%</strong><span>Satisfacción</span></div>
-      </div>
-    </div>
-    <div class="lp-hero-visual">
-      <div class="lp-hero-card">
-        <div class="lp-hc-top">
-          <div class="lp-hc-avatar">MC</div>
-          <div>
-            <div class="lp-hc-name">María Castillo</div>
-            <div class="lp-hc-sub">Próxima cita</div>
+    <div class="container">
+      <div class="row align-items-center g-5 py-5">
+        <div class="col-lg-6">
+          <span class="badge bg-success-subtle text-success fs-6 px-3 py-2 mb-3 rounded-pill">Tu salud, nuestra prioridad</span>
+          <h1 class="display-5 fw-bold lh-sm mb-3">Gestiona tu salud<br><span class="text-success">de forma inteligente</span></h1>
+          <p class="lead text-muted mb-4">Reserva citas, accede a tu historial médico y recibe recordatorios automáticos. Todo desde un solo lugar, disponible las 24 horas.</p>
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <button class="btn btn-success btn-lg px-4" (click)="irAlLogin()">Agendar cita ahora</button>
+            <button class="btn btn-outline-success btn-lg px-4" (click)="irAlLogin()">Ver mis citas</button>
+          </div>
+          <div class="d-flex gap-4 flex-wrap">
+            <div><div class="fw-bold fs-4 text-success">+2,500</div><small class="text-muted">Pacientes activos</small></div>
+            <div class="border-start ps-4"><div class="fw-bold fs-4 text-success">20+</div><small class="text-muted">Especialidades</small></div>
+            <div class="border-start ps-4"><div class="fw-bold fs-4 text-success">98%</div><small class="text-muted">Satisfacción</small></div>
           </div>
         </div>
-        <div class="lp-hc-info">
-          <div class="lp-hc-row">
-            <svg width="14" height="14" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-            <span>Miércoles 25 de junio, 2026</span>
-          </div>
-          <div class="lp-hc-row">
-            <svg width="14" height="14" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            <span>10:30 AM — Dr. Ramírez</span>
-          </div>
-          <div class="lp-hc-row">
-            <svg width="14" height="14" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <span>Medicina General — Confirmada</span>
+        <div class="col-lg-6 d-flex justify-content-center">
+          <div class="card shadow-lg border-success border-opacity-25 rounded-4" style="max-width:320px;width:100%">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center fw-bold" style="width:46px;height:46px">MC</div>
+                <div>
+                  <div class="fw-semibold">María Castillo</div>
+                  <small class="text-muted">Próxima cita</small>
+                </div>
+              </div>
+              <ul class="list-group list-group-flush mb-3">
+                <li class="list-group-item px-0 border-0 py-1 small text-muted">
+                  <svg width="14" height="14" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24" class="me-2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  Miércoles 25 de junio, 2026
+                </li>
+                <li class="list-group-item px-0 border-0 py-1 small text-muted">
+                  <svg width="14" height="14" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24" class="me-2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  10:30 AM — Dr. Ramírez
+                </li>
+                <li class="list-group-item px-0 border-0 py-1 small text-muted">
+                  <svg width="14" height="14" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24" class="me-2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  Medicina General
+                  <span class="badge bg-success ms-1">Confirmada</span>
+                </li>
+              </ul>
+              <div class="alert alert-success py-2 mb-0 text-center small rounded-3">
+                Recordatorio enviado ✓
+              </div>
+            </div>
           </div>
         </div>
-        <div class="lp-hc-badge">Recordatorio enviado ✓</div>
       </div>
     </div>
   </section>
 
   <!-- SERVICIOS -->
-  <section class="lp-servicios" id="servicios">
-    <h2 class="lp-section-title">¿Qué puedes hacer?</h2>
-    <p class="lp-section-sub">Todo lo que necesitas para gestionar tu salud en un solo sistema</p>
-    <div class="lp-servicios-grid">
-      <div class="lp-servicio-card" *ngFor="let s of servicios">
-        <div class="lp-serv-icon">
-          <svg width="24" height="24" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><path [attr.d]="s.icono"/></svg>
+  <section class="py-5 bg-white" id="servicios">
+    <div class="container text-center">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="d-flex justify-content-center mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#" class="text-success text-decoration-none">Inicio</a></li>
+          <li class="breadcrumb-item active">Servicios</li>
+        </ol>
+      </nav>
+      <h2 class="fw-bold mb-2">¿Qué puedes hacer?</h2>
+      <p class="text-muted mb-5">Todo lo que necesitas para gestionar tu salud en un solo sistema</p>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3" *ngFor="let s of servicios">
+          <div class="card h-100 border-0 shadow-sm rounded-4 text-start p-1 lp-card-hover">
+            <div class="card-body p-4">
+              <div class="bg-success bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center mb-3" style="width:48px;height:48px">
+                <svg width="24" height="24" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24"><path [attr.d]="s.icono"/></svg>
+              </div>
+              <h5 class="fw-bold mb-2">{{ s.titulo }}</h5>
+              <p class="text-muted small mb-0">{{ s.desc }}</p>
+            </div>
+          </div>
         </div>
-        <h3>{{ s.titulo }}</h3>
-        <p>{{ s.desc }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRESO / STATS -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="fw-bold text-center mb-5">Nuestros resultados</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm rounded-4 p-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-1"><span class="fw-semibold">Satisfacción de pacientes</span><span class="badge bg-success">98%</span></div>
+              <div class="progress rounded-pill" style="height:10px"><div class="progress-bar bg-success" style="width:98%"></div></div>
+              <div class="d-flex justify-content-between mb-1 mt-3"><span class="fw-semibold">Citas completadas</span><span class="badge bg-primary">84.5%</span></div>
+              <div class="progress rounded-pill" style="height:10px"><div class="progress-bar bg-primary" style="width:84.5%"></div></div>
+              <div class="d-flex justify-content-between mb-1 mt-3"><span class="fw-semibold">Retención mensual</span><span class="badge bg-warning text-dark">91.2%</span></div>
+              <div class="progress rounded-pill" style="height:10px"><div class="progress-bar bg-warning" style="width:91.2%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex flex-column gap-3">
+          <div class="alert alert-success d-flex align-items-center gap-2 rounded-4" role="alert">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div><strong>+2,500 pacientes</strong> confían en MedSystem para su salud.</div>
+          </div>
+          <div class="alert alert-info d-flex align-items-center gap-2 rounded-4" role="alert">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <div>Atención disponible <strong>las 24 horas</strong>, los 7 días de la semana.</div>
+          </div>
+          <div class="alert alert-warning d-flex align-items-center gap-2 rounded-4" role="alert">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div>Recuerda traer tu <strong>DNI</strong> a tu primera cita presencial.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- TESTIMONIOS -->
-  <section class="lp-testimonios" id="testimonios">
-    <h2 class="lp-section-title lp-white">Lo que dicen nuestros pacientes</h2>
-    <div class="lp-test-grid">
-      <div class="lp-test-card" *ngFor="let t of testimonios">
-        <p class="lp-test-texto">"{{ t.texto }}"</p>
-        <div class="lp-test-autor">
-          <div class="lp-test-avatar">{{ t.iniciales }}</div>
-          <div>
-            <div class="lp-test-nombre">{{ t.nombre }}</div>
-            <div class="lp-test-cargo">{{ t.cargo }}</div>
+  <section class="py-5" id="testimonios" style="background:linear-gradient(135deg,#059669,#047857)">
+    <div class="container text-center">
+      <h2 class="fw-bold text-white mb-5">Lo que dicen nuestros pacientes</h2>
+      <div class="row g-4">
+        <div class="col-md-4" *ngFor="let t of testimonios">
+          <div class="card h-100 border-0 rounded-4 text-start" style="background:rgba(255,255,255,0.12)">
+            <div class="card-body p-4">
+              <p class="text-white fst-italic mb-4">"{{ t.texto }}"</p>
+              <div class="d-flex align-items-center gap-3">
+                <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white" style="width:40px;height:40px;background:rgba(255,255,255,0.25)">{{ t.iniciales }}</div>
+                <div>
+                  <div class="fw-semibold text-white">{{ t.nombre }}</div>
+                  <small style="color:rgba(255,255,255,0.7)">{{ t.cargo }}</small>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -91,15 +170,20 @@
   </section>
 
   <!-- CTA -->
-  <section class="lp-cta">
-    <h2>¿Listo para cuidar tu salud?</h2>
-    <p>Únete a más de 2,500 pacientes que ya gestionan su salud con MedSystem</p>
-    <button class="lp-btn-primary lp-btn-large" (click)="irAlLogin()">Comenzar ahora — Es gratis</button>
+  <section class="py-5 bg-light text-center">
+    <div class="container">
+      <h2 class="fw-bold mb-3">¿Listo para cuidar tu salud?</h2>
+      <p class="text-muted mb-4">Únete a más de 2,500 pacientes que ya gestionan su salud con MedSystem</p>
+      <button class="btn btn-success btn-lg px-5 py-3 rounded-pill shadow" (click)="irAlLogin()">Comenzar ahora — Es gratis</button>
+    </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="lp-footer">
-    <span>© 2026 MedSystem — Clínica Digital</span>
-    <span>Todos los derechos reservados</span>
+  <footer class="bg-dark text-secondary py-3">
+    <div class="container d-flex justify-content-between flex-wrap gap-2 small">
+      <span>© 2026 MedSystem — Clínica Digital</span>
+      <span>Todos los derechos reservados</span>
+    </div>
   </footer>
+
 </div>
