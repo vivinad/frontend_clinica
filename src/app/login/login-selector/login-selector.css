@@ -245,6 +245,50 @@
   color: #2563EB;
 }
 
+.landing-links {
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #F1F5F9;
+}
+.landing-label {
+  display: block;
+  font-size: 11px;
+  color: #94A3B8;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.landing-btns {
+  display: flex;
+  gap: 8px;
+}
+.landing-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.15s;
+  border: 1.5px solid;
+}
+.paciente-btn {
+  background: #ECFDF5;
+  border-color: #A7F3D0;
+  color: #065F46;
+}
+.paciente-btn:hover { background: #D1FAE5; border-color: #059669; }
+.doctor-btn {
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #1E40AF;
+}
+.doctor-btn:hover { background: #DBEAFE; border-color: #2563EB; }
+
 @media (max-width: 768px) {
   .auth-root { grid-template-columns: 1fr; }
   .auth-left { display: none; }

@@ -31,7 +31,7 @@ export class SistemasDashboardComponent implements OnInit {
     this.mostrarFormMed = false;
   }
 
-  constructor(private router: Router) {}
+  constructor(public router: Router) {}
 
   // ── DOCTORES ──
   mostrarFormDoctor = false;

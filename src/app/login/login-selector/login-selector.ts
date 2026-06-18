@@ -18,6 +18,8 @@ export class LoginSelectorComponent {
 
   constructor(private router: Router) {}
 
+  irA(ruta: string): void { this.router.navigate([ruta]); }
+
   ingresar(): void {
     this.error = '';
 
