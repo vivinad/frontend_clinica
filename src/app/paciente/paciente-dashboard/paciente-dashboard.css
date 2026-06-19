@@ -354,3 +354,27 @@
 
 .empty-state { padding: 24px 0; text-align: center; font-size: 14px; color: #94A3B8; }
 .empty-state span { color: #059669; cursor: pointer; font-weight: 500; text-decoration: underline; }
+
+/* ══ RESPONSIVE MOBILE ══ */
+.mobile-topbar {
+  display: none; align-items: center; justify-content: space-between;
+  padding: 12px 16px; background: #0F172A;
+  position: sticky; top: 0; z-index: 200; width: 100%;
+}
+.mobile-topbar .brand { color: #EEF2FF; font-size: 15px; font-weight: 700; }
+.mobile-hamburger { background: transparent; border: none; cursor: pointer; color: white; padding: 4px; }
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; }
+
+@media (max-width: 768px) {
+  .pac-root { flex-direction: column; }
+  .mobile-topbar { display: flex; }
+  .sidebar {
+    position: fixed; top: 0; left: -230px; height: 100vh;
+    z-index: 400; transition: left 0.25s ease;
+  }
+  .sidebar.mobile-open { left: 0; }
+  .sidebar.collapsed { left: -64px; }
+  .sidebar-overlay.active { display: block; }
+  .pac-main { width: 100%; min-width: 0; }
+  .main-header { padding: 12px 16px; }
+}

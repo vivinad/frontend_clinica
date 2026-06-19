@@ -14,6 +14,7 @@ export class PacienteDashboardComponent implements OnInit {
 
   seccionActiva = 'inicio';
   sidebarCollapsed = false;
+  mobileMenuOpen = false;
   fechaHoy = '';
 
   get tituloSeccion(): string {
@@ -24,7 +25,7 @@ export class PacienteDashboardComponent implements OnInit {
     return t[this.seccionActiva] || '';
   }
 
-  cambiarSeccion(s: string) { this.seccionActiva = s; }
+  cambiarSeccion(s: string) { this.seccionActiva = s; this.mobileMenuOpen = false; }
 
   constructor(private router: Router) {}
 

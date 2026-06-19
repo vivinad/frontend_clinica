@@ -14,6 +14,7 @@ export class DoctorDashboardComponent implements OnInit {
   Math = Math;
   seccionActiva = 'inicio';
   sidebarCollapsed = false;
+  mobileMenuOpen = false;
   fechaHoy = '';
   imageExt = '.png';
   tabCitas = 'todas';
@@ -27,7 +28,7 @@ export class DoctorDashboardComponent implements OnInit {
     return t[this.seccionActiva] || '';
   }
 
-  cambiarSeccion(s: string) { this.seccionActiva = s; this.pacienteSeleccionado = null; }
+  cambiarSeccion(s: string) { this.seccionActiva = s; this.pacienteSeleccionado = null; this.mobileMenuOpen = false; }
 
   // CITAS
   mostrarFormCita = false;
