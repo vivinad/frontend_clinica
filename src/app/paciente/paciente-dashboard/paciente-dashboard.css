@@ -203,6 +203,26 @@
 .step.done .step-circle { border-color: #059669; background: #059669; color: #fff; }
 .step-line { flex: 1; height: 1px; background: #E2E8F0; margin: 0 8px; min-width: 32px; }
 
+/* ══ PASO 1: ESPECIALIDADES ══ */
+.esp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.esp-card {
+  border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 20px 18px;
+  cursor: pointer; transition: all 0.15s;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.esp-card:hover:not(.disabled) { border-color: #6EE7B7; background: #F0FDF4; transform: translateY(-2px); }
+.esp-card.disabled { opacity: 0.5; cursor: not-allowed; }
+.esp-icono {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: linear-gradient(135deg, #ECFDF5, #CFFAFE);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.esp-icono.sm { width: 36px; height: 36px; font-size: 18px; flex-shrink: 0; }
+.esp-nombre { font-size: 14.5px; font-weight: 700; color: #0F172A; }
+.esp-desc { font-size: 12px; color: #64748B; line-height: 1.4; }
+.esp-disp { font-size: 11.5px; font-weight: 500; padding: 3px 9px; border-radius: 20px; align-self: flex-start; margin-top: 2px; }
+
 /* ══ DOCTOR GRID ══ */
 .doctor-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .doctor-card {
@@ -359,14 +379,13 @@
 .mobile-topbar {
   display: none; align-items: center; justify-content: space-between;
   padding: 12px 16px; background: #0F172A;
-  position: sticky; top: 0; z-index: 200; width: 100%;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 52px;
 }
 .mobile-topbar .brand { color: #EEF2FF; font-size: 15px; font-weight: 700; }
 .mobile-hamburger { background: transparent; border: none; cursor: pointer; color: white; padding: 4px; }
 .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; }
 
 @media (max-width: 768px) {
-  .pac-root { flex-direction: column; }
   .mobile-topbar { display: flex; }
   .sidebar {
     position: fixed; top: 0; left: -230px; height: 100vh;
@@ -375,6 +394,6 @@
   .sidebar.mobile-open { left: 0; }
   .sidebar.collapsed { left: -64px; }
   .sidebar-overlay.active { display: block; }
-  .pac-main { width: 100%; min-width: 0; }
+  .pac-main { width: 100%; min-width: 0; padding-top: 52px; }
   .main-header { padding: 12px 16px; }
 }

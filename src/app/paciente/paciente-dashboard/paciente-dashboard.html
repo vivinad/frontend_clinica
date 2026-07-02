@@ -191,30 +191,65 @@
         </div>
       </div>
 
-      <!-- PASO 1: Seleccionar doctor -->
+      <!-- PASO 1: Seleccionar especialidad -->
       <div class="section-card" *ngIf="!citaConfirmada">
         <div class="stepper">
           <div class="step" [class.active]="pasoCita >= 1" [class.done]="pasoCita > 1">
             <div class="step-circle">{{ pasoCita > 1 ? '✓' : '1' }}</div>
-            <span>Seleccionar médico</span>
+            <span>Especialidad</span>
           </div>
           <div class="step-line"></div>
           <div class="step" [class.active]="pasoCita >= 2" [class.done]="pasoCita > 2">
             <div class="step-circle">{{ pasoCita > 2 ? '✓' : '2' }}</div>
+            <span>Seleccionar médico</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step" [class.active]="pasoCita >= 3" [class.done]="pasoCita > 3">
+            <div class="step-circle">{{ pasoCita > 3 ? '✓' : '3' }}</div>
             <span>Fecha y hora</span>
           </div>
           <div class="step-line"></div>
-          <div class="step" [class.active]="pasoCita >= 3">
-            <div class="step-circle">3</div>
+          <div class="step" [class.active]="pasoCita >= 4">
+            <div class="step-circle">4</div>
             <span>Confirmar</span>
           </div>
         </div>
 
-        <!-- Paso 1 -->
+        <!-- Paso 1: Especialidad -->
         <div *ngIf="pasoCita === 1">
-          <div class="card-title" style="margin-bottom: 16px;">Elige tu médico</div>
+          <div class="card-title" style="margin-bottom: 4px;">¿Dónde deseas atenderte?</div>
+          <div class="card-subtitle" style="margin-bottom: 16px;">Elige la especialidad según lo que necesites</div>
+          <div class="esp-grid">
+            <div class="esp-card" *ngFor="let e of especialidades"
+              [class.disabled]="disponiblesEn(e.nombre) === 0"
+              (click)="disponiblesEn(e.nombre) > 0 && seleccionarEspecialidad(e)">
+              <div class="esp-icono">{{ e.icono }}</div>
+              <span class="esp-nombre">{{ e.nombre }}</span>
+              <span class="esp-desc">{{ e.descripcion }}</span>
+              <span class="esp-disp" [ngClass]="disponiblesEn(e.nombre) > 0 ? 'disp' : 'no-disp'">
+                {{ disponiblesEn(e.nombre) > 0 ? disponiblesEn(e.nombre) + (disponiblesEn(e.nombre) === 1 ? ' profesional disponible' : ' profesionales disponibles') : 'Sin disponibilidad' }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 2: Médico de la especialidad -->
+        <div *ngIf="pasoCita === 2">
+          <div class="paso2-header">
+            <button class="btn-back" (click)="pasoCita = 1; especialidadSeleccionada = null">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              Volver
+            </button>
+            <div class="doc-seleccionado-info">
+              <div class="esp-icono sm">{{ especialidadSeleccionada?.icono }}</div>
+              <div>
+                <span class="doc-name">{{ especialidadSeleccionada?.nombre }}</span>
+                <span class="doc-esp">Profesionales de esta área</span>
+              </div>
+            </div>
+          </div>
           <div class="doctor-grid">
-            <div class="doctor-card" *ngFor="let doc of doctores"
+            <div class="doctor-card" *ngFor="let doc of doctoresFiltrados"
               [class.disabled]="!doc.disponible"
               [class.selected]="doctorSeleccionado?.id === doc.id"
               (click)="seleccionarDoctor(doc)">
@@ -230,10 +265,10 @@
           </div>
         </div>
 
-        <!-- Paso 2 -->
-        <div *ngIf="pasoCita === 2">
+        <!-- Paso 3: Fecha y hora -->
+        <div *ngIf="pasoCita === 3">
           <div class="paso2-header">
-            <button class="btn-back" (click)="pasoCita = 1; doctorSeleccionado = null">
+            <button class="btn-back" (click)="pasoCita = 2; doctorSeleccionado = null">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
               Volver
             </button>
@@ -277,14 +312,14 @@
           </div>
 
           <div class="form-actions" style="margin-top: 24px;">
-            <button class="btn-primary" [disabled]="!fechaSeleccionada || !horaSeleccionada" (click)="pasoCita = 3">Continuar</button>
-            <button class="btn-ghost" (click)="pasoCita = 1; doctorSeleccionado = null">Cancelar</button>
+            <button class="btn-primary" [disabled]="!fechaSeleccionada || !horaSeleccionada" (click)="pasoCita = 4">Continuar</button>
+            <button class="btn-ghost" (click)="reiniciarReserva()">Cancelar</button>
           </div>
         </div>
 
-        <!-- Paso 3 -->
-        <div *ngIf="pasoCita === 3" class="confirmar-wrap">
-          <button class="btn-back" (click)="pasoCita = 2">
+        <!-- Paso 4: Confirmar -->
+        <div *ngIf="pasoCita === 4" class="confirmar-wrap">
+          <button class="btn-back" (click)="pasoCita = 3">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
             Volver
           </button>
@@ -309,7 +344,7 @@
           </div>
           <div class="form-actions" style="margin-top: 20px;">
             <button class="btn-primary" (click)="confirmarCita()">Confirmar reserva</button>
-            <button class="btn-ghost" (click)="pasoCita = 1; doctorSeleccionado = null">Cancelar</button>
+            <button class="btn-ghost" (click)="reiniciarReserva()">Cancelar</button>
           </div>
         </div>
       </div>

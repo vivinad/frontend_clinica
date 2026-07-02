@@ -541,21 +541,93 @@
 }
 .chat-send:hover { background: #1D4ED8; }
 
+/* ══ CERRAR SESIÓN ══ */
+.btn-cerrar {
+  display: flex; align-items: center; gap: 7px;
+  background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA;
+  border-radius: 8px; padding: 7px 14px; font-size: 13px; font-weight: 500;
+  cursor: pointer; font-family: inherit; transition: background 0.15s;
+  white-space: nowrap;
+}
+.btn-cerrar:hover { background: #FEE2E2; }
+
+/* ══ HISTORIAL: EDICIÓN Y PDF ══ */
+.hist-block { margin-bottom: 4px; }
+.hist-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.btn-sm.pdf { color: #7C3AED; background: #F5F3FF; }
+.btn-sm.pdf:hover { background: #EDE9FE; }
+
+.hist-detalle {
+  margin: 6px 0 14px 26px;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  background: #F8FAFC;
+  padding: 6px 14px;
+}
+.hist-entrada {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+  padding: 12px 4px;
+  border-bottom: 1px solid #E2E8F0;
+}
+.hist-entrada:last-child { border-bottom: none; }
+.hist-entrada-info { flex: 1; }
+.hist-edit-form { flex: 1; padding: 4px 0; }
+
+/* ══ MODAL FIRMA DIGITAL ══ */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 500;
+  padding: 16px;
+}
+.modal-firma {
+  background: #fff;
+  border-radius: 18px;
+  padding: 24px;
+  width: 100%; max-width: 500px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+.modal-firma-header { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 18px; }
+.modal-firma-icon {
+  width: 40px; height: 40px; border-radius: 11px; flex-shrink: 0;
+  background: linear-gradient(135deg, #2563EB, #7C3AED);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-firma-title { font-size: 16px; font-weight: 700; color: #111827; }
+.modal-firma-sub { font-size: 12.5px; color: #64748B; margin-top: 3px; line-height: 1.5; }
+
+.firma-label {
+  display: block; font-size: 12px; font-weight: 600; color: #374151;
+  margin: 14px 0 6px;
+}
+.firma-canvas {
+  width: 100%;
+  border: 2px dashed #CBD5E1;
+  border-radius: 12px;
+  background: #F8FAFC;
+  cursor: crosshair;
+  touch-action: none;
+  display: block;
+}
+.firma-canvas:hover { border-color: #93C5FD; }
+.firma-hint { font-size: 11px; color: #94A3B8; text-align: center; margin-top: 6px; }
+
+.modal-firma-actions { justify-content: space-between; margin-top: 18px; }
+.modal-firma-actions-right { display: flex; gap: 8px; }
+.modal-firma .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+
 /* ══ RESPONSIVE MOBILE ══ */
 .mobile-topbar {
   display: none;
   align-items: center; justify-content: space-between;
   padding: 12px 16px; background: #111827;
-  position: sticky; top: 0; z-index: 200;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 52px;
 }
 .mobile-topbar .brand { color: #EEF2FF; font-size: 15px; font-weight: 700; }
-.mobile-hamburger {
-  background: transparent; border: none; cursor: pointer; color: white; padding: 4px;
-}
-.sidebar-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.5); z-index: 300;
-}
+.mobile-hamburger { background: transparent; border: none; cursor: pointer; color: white; padding: 4px; }
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; }
 @media (max-width: 768px) {
   .mobile-topbar { display: flex; }
   .sidebar {
@@ -565,6 +637,6 @@
   .sidebar.mobile-open { left: 0; }
   .sidebar.collapsed { left: -64px; }
   .sidebar-overlay.active { display: block; }
-  .main { width: 100%; min-width: 0; }
+  .main { width: 100%; min-width: 0; padding-top: 52px; }
   .main-header { padding: 12px 16px; }
 }

@@ -149,4 +149,6 @@ export class AnalyticsDashboardComponent implements OnInit, AfterViewInit {
   }
 
   volver() { this.router.navigate(['/sistemas/dashboard']); }
+
+  cerrarSesion() { this.router.navigate(['/login']); }
 }

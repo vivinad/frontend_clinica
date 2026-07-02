@@ -51,14 +51,28 @@ export class PacienteDashboardComponent implements OnInit {
   ];
 
   // RESERVAR CITA
+  especialidades = [
+    { nombre: 'Psicología', icono: '🧠', descripcion: 'Salud mental y bienestar emocional' },
+    { nombre: 'Medicina General', icono: '🩺', descripcion: 'Atención integral y controles de rutina' },
+    { nombre: 'Cardiología', icono: '❤️', descripcion: 'Cuidado del corazón y sistema circulatorio' },
+    { nombre: 'Neurología', icono: '⚡', descripcion: 'Sistema nervioso y trastornos neurológicos' },
+    { nombre: 'Dermatología', icono: '🧴', descripcion: 'Cuidado de la piel, cabello y uñas' },
+    { nombre: 'Traumatología', icono: '🦴', descripcion: 'Huesos, músculos y articulaciones' },
+  ];
+
   doctores = [
     { id: 1, nombre: 'Dr. Ramírez', especialidad: 'Medicina General', foto: 'RM', disponible: true },
     { id: 2, nombre: 'Dra. Vega', especialidad: 'Cardiología', foto: 'DV', disponible: true },
     { id: 3, nombre: 'Dr. Torres', especialidad: 'Neurología', foto: 'DT', disponible: true },
     { id: 4, nombre: 'Dra. López', especialidad: 'Dermatología', foto: 'DL', disponible: false },
     { id: 5, nombre: 'Dr. Mora', especialidad: 'Traumatología', foto: 'DM', disponible: true },
+    { id: 6, nombre: 'Lic. Salas', especialidad: 'Psicología', foto: 'LS', disponible: true },
+    { id: 7, nombre: 'Lic. Herrera', especialidad: 'Psicología', foto: 'LH', disponible: true },
+    { id: 8, nombre: 'Dr. Campos', especialidad: 'Medicina General', foto: 'DC', disponible: false },
+    { id: 9, nombre: 'Dra. Quispe', especialidad: 'Cardiología', foto: 'DQ', disponible: false },
   ];
 
+  especialidadSeleccionada: any = null;
   doctorSeleccionado: any = null;
   fechaSeleccionada = '';
   horaSeleccionada = '';
@@ -69,12 +83,36 @@ export class PacienteDashboardComponent implements OnInit {
   horasDisponibles = ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '14:00', '14:30', '15:00', '15:30', '16:00'];
   horasOcupadas = ['09:00', '10:30', '15:00'];
 
+  get doctoresFiltrados() {
+    if (!this.especialidadSeleccionada) return [];
+    return this.doctores.filter(d => d.especialidad === this.especialidadSeleccionada.nombre);
+  }
+
+  disponiblesEn(especialidad: string): number {
+    return this.doctores.filter(d => d.especialidad === especialidad && d.disponible).length;
+  }
+
+  seleccionarEspecialidad(e: any) {
+    this.especialidadSeleccionada = e;
+    this.doctorSeleccionado = null;
+    this.pasoCita = 2;
+  }
+
   seleccionarDoctor(doc: any) {
     if (!doc.disponible) return;
     this.doctorSeleccionado = doc;
-    this.pasoCita = 2;
+    this.pasoCita = 3;
     this.fechaSeleccionada = '';
     this.horaSeleccionada = '';
+  }
+
+  reiniciarReserva() {
+    this.pasoCita = 1;
+    this.especialidadSeleccionada = null;
+    this.doctorSeleccionado = null;
+    this.fechaSeleccionada = '';
+    this.horaSeleccionada = '';
+    this.motivoCita = '';
   }
 
   seleccionarHora(h: string) {
@@ -96,11 +134,7 @@ export class PacienteDashboardComponent implements OnInit {
     });
     setTimeout(() => {
       this.citaConfirmada = false;
-      this.pasoCita = 1;
-      this.doctorSeleccionado = null;
-      this.fechaSeleccionada = '';
-      this.horaSeleccionada = '';
-      this.motivoCita = '';
+      this.reiniciarReserva();
     }, 3500);
   }
 

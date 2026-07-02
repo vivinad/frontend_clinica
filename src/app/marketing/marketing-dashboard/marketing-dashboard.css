@@ -69,6 +69,8 @@
   margin-top: auto;
 }
 .md-back-btn:hover { background: #F5F3FF; color: #7C3AED; }
+.md-back-btn.logout { margin-top: 8px; background: #FEF2F2; color: #DC2626; border-color: #FECACA; }
+.md-back-btn.logout:hover { background: #FEE2E2; color: #B91C1C; }
 
 .md-main {
   flex: 1;

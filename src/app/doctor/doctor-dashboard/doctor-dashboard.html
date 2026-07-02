@@ -149,6 +149,13 @@
           </svg>
           <span class="notif-badge">3</span>
         </button>
+        <button class="btn-cerrar" (click)="cerrarSesion()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Cerrar sesión
+        </button>
       </div>
     </div>
 
@@ -303,6 +310,7 @@
             <span class="col-hora">Hora</span>
             <span class="col-motivo">Motivo</span>
             <span class="col-estado">Estado</span>
+            <span class="col-acc"></span>
           </div>
           <div class="table-row" *ngFor="let cita of citasFiltradas">
             <span class="col-pac"><div class="mini-avatar">{{ cita.iniciales }}</div>{{ cita.nombre }}</span>
@@ -310,6 +318,11 @@
             <span class="col-hora">{{ cita.hora }}</span>
             <span class="col-motivo">{{ cita.motivo }}</span>
             <span class="col-estado"><span class="badge" [ngClass]="cita.estado">{{ cita.estadoLabel }}</span></span>
+            <span class="col-acc">
+              <button class="btn-icon-sm" (click)="abrirModalFirma(cita, 'cita')" title="Firmar e imprimir cita">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              </button>
+            </span>
           </div>
         </div>
       </div>
@@ -378,12 +391,60 @@
           </div>
         </div>
         <div class="timeline">
-          <div class="timeline-item" *ngFor="let p of pacientesFiltrados">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-fecha">{{ p.ultimaVisita }}</span>
-              <span class="timeline-dx">{{ p.nombre }}</span>
-              <p class="timeline-nota">{{ p.diagnostico }} — {{ p.historial[0]?.nota }}</p>
+          <div class="hist-block" *ngFor="let p of pacientesFiltrados">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <span class="timeline-fecha">{{ p.ultimaVisita }}</span>
+                <span class="timeline-dx">{{ p.nombre }}</span>
+                <p class="timeline-nota">{{ p.diagnostico }} — {{ p.historial[0]?.nota }}</p>
+                <div class="hist-actions">
+                  <button class="btn-sm" (click)="toggleHistorial(p)">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+                    {{ historialExpandido === p ? 'Cerrar' : 'Ver / Editar' }}
+                  </button>
+                  <button class="btn-sm pdf" (click)="abrirModalFirma(p, 'historial')">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Descargar PDF
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="hist-detalle" *ngIf="historialExpandido === p">
+              <div class="hist-entrada" *ngFor="let h of p.historial">
+                <ng-container *ngIf="entradaEditando !== h">
+                  <div class="hist-entrada-info">
+                    <span class="timeline-fecha">{{ h.fecha }}</span>
+                    <span class="timeline-dx">{{ h.diagnostico }}</span>
+                    <p class="timeline-nota">{{ h.nota }}</p>
+                  </div>
+                  <button class="btn-icon-sm" (click)="editarEntrada(h)" title="Editar registro">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+                  </button>
+                </ng-container>
+
+                <div class="hist-edit-form" *ngIf="entradaEditando === h">
+                  <div class="form-grid">
+                    <div class="field">
+                      <label>Fecha</label>
+                      <input type="text" [(ngModel)]="entradaEdit.fecha"/>
+                    </div>
+                    <div class="field">
+                      <label>Diagnóstico</label>
+                      <input type="text" [(ngModel)]="entradaEdit.diagnostico"/>
+                    </div>
+                    <div class="field full">
+                      <label>Nota clínica</label>
+                      <textarea rows="2" [(ngModel)]="entradaEdit.nota"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-actions">
+                    <button class="btn-primary" (click)="guardarEdicion(p, h)">Guardar cambios</button>
+                    <button class="btn-ghost" (click)="cancelarEdicion()">Cancelar</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -439,6 +500,7 @@
             <span class="col-hora">Dosis</span>
             <span class="col-hora">Duración</span>
             <span class="col-estado">Fecha</span>
+            <span class="col-acc"></span>
           </div>
           <div class="table-row" *ngFor="let r of recetas">
             <span class="col-pac"><div class="mini-avatar">{{ r.iniciales }}</div>{{ r.paciente }}</span>
@@ -446,6 +508,11 @@
             <span class="col-hora">{{ r.dosis }}</span>
             <span class="col-hora">{{ r.duracion }}</span>
             <span class="col-estado"><span class="badge confirmada">{{ r.fecha }}</span></span>
+            <span class="col-acc">
+              <button class="btn-icon-sm" (click)="abrirModalFirma(r, 'receta')" title="Firmar e imprimir receta">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              </button>
+            </span>
           </div>
         </div>
       </div>
@@ -617,6 +684,48 @@
     </div>
 
   </main>
+
+  <!-- Modal firma digital -->
+  <div class="modal-overlay" *ngIf="mostrarModalFirma" (click)="cerrarModalFirma()">
+    <div class="modal-firma" (click)="$event.stopPropagation()">
+      <div class="modal-firma-header">
+        <div class="modal-firma-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+        </div>
+        <div>
+          <div class="modal-firma-title">Firma digital requerida</div>
+          <div class="modal-firma-sub">Para descargar o imprimir {{ etiquetaPDF }} de <strong>{{ nombrePDF }}</strong> debe firmar el documento</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Nombre del médico</label>
+        <input type="text" [(ngModel)]="firmaNombre" placeholder="Dr. Nombre Apellido"/>
+      </div>
+
+      <label class="firma-label">Firme en el recuadro:</label>
+      <canvas #firmaCanvas width="440" height="150" class="firma-canvas"
+        (mousedown)="iniciarTrazo($event, firmaCanvas)"
+        (mousemove)="trazar($event, firmaCanvas)"
+        (mouseup)="terminarTrazo()"
+        (mouseleave)="terminarTrazo()"
+        (touchstart)="iniciarTrazo($event, firmaCanvas)"
+        (touchmove)="trazar($event, firmaCanvas)"
+        (touchend)="terminarTrazo()"></canvas>
+      <div class="firma-hint">Dibuje su firma con el mouse o el dedo</div>
+
+      <div class="form-actions modal-firma-actions">
+        <button class="btn-ghost" (click)="limpiarFirma(firmaCanvas)">Limpiar firma</button>
+        <div class="modal-firma-actions-right">
+          <button class="btn-ghost" (click)="cerrarModalFirma()">Cancelar</button>
+          <button class="btn-primary" [disabled]="!firmaHecha || !firmaNombre.trim()" (click)="descargarPDF(firmaCanvas)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Firmar y descargar PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Chat IA flotante -->
   <div class="chat-fab" (click)="toggleChat()" [title]="chatAbierto ? 'Cerrar asistente' : 'Asistente IA'">
