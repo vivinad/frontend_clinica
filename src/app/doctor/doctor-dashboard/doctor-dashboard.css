@@ -639,4 +639,47 @@
   .sidebar-overlay.active { display: block; }
   .main { width: 100%; min-width: 0; padding-top: 52px; }
   .main-header { padding: 12px 16px; }
+
+  /* Topbar */
+  .topbar { height: auto; min-height: 56px; padding: 10px 14px; flex-wrap: wrap; gap: 8px; }
+  .topbar-left { flex-direction: column; gap: 2px; }
+  .page-title { font-size: 15px; }
+  .page-date { font-size: 11px; }
+  .search-wrap { display: none; }
+  .btn-cerrar { padding: 6px 10px; font-size: 12px; }
+
+  /* Contenido */
+  .seccion { padding: 14px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat-card { padding: 16px; }
+  .stat-num { font-size: 24px; }
+  .section-card { padding: 16px; }
+  .card-header { flex-wrap: wrap; gap: 10px; }
+  .search-field { width: 100%; }
+  .search-field input { width: 100%; }
+
+  /* Tablas: scroll horizontal */
+  .table-head-row, .table-row { min-width: 580px; }
+
+  /* Formularios */
+  .form-grid { grid-template-columns: 1fr; }
+  .field.full { grid-column: span 1; }
+  .prioridad-grid { flex-wrap: wrap; }
+
+  /* Historial */
+  .hist-detalle { margin-left: 0; }
+  .hist-actions { gap: 6px; }
+
+  /* Pacientes */
+  .paciente-item { flex-wrap: wrap; gap: 8px; }
+  .paciente-fecha { width: 100%; font-size: 11px; }
+
+  /* Chat IA */
+  .chat-panel { width: calc(100vw - 24px); right: 12px; bottom: 84px; }
+  .chat-fab { right: 16px; bottom: 16px; }
+
+  /* Modal firma */
+  .modal-firma { padding: 16px; }
+  .modal-firma-actions { flex-wrap: wrap; gap: 10px; }
+  .modal-firma-actions-right { flex-wrap: wrap; }
 }

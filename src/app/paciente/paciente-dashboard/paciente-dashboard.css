@@ -395,5 +395,48 @@
   .sidebar.collapsed { left: -64px; }
   .sidebar-overlay.active { display: block; }
   .pac-main { width: 100%; min-width: 0; padding-top: 52px; }
+  .main { width: 100%; min-width: 0; padding-top: 52px; }
   .main-header { padding: 12px 16px; }
+
+  /* Topbar */
+  .topbar { height: auto; min-height: 56px; padding: 10px 14px; flex-wrap: wrap; gap: 8px; }
+  .topbar-left { flex-direction: column; gap: 2px; }
+  .page-title { font-size: 15px; }
+  .page-date { font-size: 11px; }
+  .btn-cerrar { padding: 6px 10px; font-size: 12px; }
+
+  /* Contenido */
+  .seccion { padding: 14px; }
+  .section-card { padding: 16px; }
+  .card-header { flex-wrap: wrap; gap: 10px; }
+  .two-col { grid-template-columns: 1fr; }
+
+  /* Bienvenida */
+  .bienvenida-card { flex-direction: column; align-items: stretch; padding: 20px; gap: 14px; }
+  .bienvenida-stats { justify-content: space-around; padding: 12px 8px; }
+  .bstat { padding: 0 10px; }
+  .bstat-num { font-size: 20px; }
+
+  /* Citas */
+  .cita-card { flex-wrap: wrap; gap: 10px; }
+  .cita-right { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
+  .cita-fecha-box { text-align: left; }
+
+  /* Stepper: solo muestra el nombre del paso actual */
+  .stepper { margin-bottom: 20px; padding-bottom: 16px; }
+  .step span { display: none; }
+  .step.active:not(.done) span { display: inline; font-size: 12px; }
+  .step-line { min-width: 12px; margin: 0 5px; }
+  .step-circle { width: 26px; height: 26px; }
+
+  /* Reservar cita */
+  .form-row { grid-template-columns: 1fr; }
+  .paso2-header { flex-wrap: wrap; gap: 10px; }
+  .horas-grid { gap: 6px; }
+
+  /* Timeline historial */
+  .timeline-date-col { width: 76px; font-size: 11px; }
+
+  /* Confirmar */
+  .confirmar-row { flex-wrap: wrap; gap: 4px; }
 }

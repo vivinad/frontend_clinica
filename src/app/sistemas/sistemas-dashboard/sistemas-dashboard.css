@@ -358,8 +358,14 @@
   .sidebar.mobile-open { left: 0; }
   .sidebar.collapsed { left: -64px; }
   .sidebar-overlay.active { display: block; }
-  .sys-main { width: 100%; min-width: 0; padding-top: 52px; }
+  .main { width: 100%; min-width: 0; padding-top: 52px; }
   .main-header { padding: 12px 16px; }
   .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .section-grid { grid-template-columns: 1fr; }
+
+  .topbar { height: auto; min-height: 56px; padding: 10px 14px; flex-wrap: wrap; gap: 8px; }
+  .topbar-left { flex-direction: column; gap: 2px; }
+  .page-title { font-size: 15px; }
+  .seccion { padding: 14px; }
+  .card-header { flex-wrap: wrap; gap: 10px; }
 }

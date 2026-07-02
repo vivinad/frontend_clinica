@@ -175,3 +175,24 @@
   border-radius: 0 6px 6px 0;
   line-height: 1.5;
 }
+
+/* == RESPONSIVE MOBILE == */
+@media (max-width: 768px) {
+  .ad-layout { flex-direction: column; height: auto; min-height: 100vh; }
+  .ad-sidebar {
+    width: 100%; min-width: 0;
+    flex-direction: row; flex-wrap: wrap; align-items: center;
+    padding: 12px 14px; gap: 8px;
+    border-right: none; border-bottom: 1px solid #E2E8F0;
+  }
+  .ad-brand { padding: 0; border-bottom: none; margin-bottom: 0; margin-right: auto; }
+  .ad-nav { flex-direction: row; flex: initial; }
+  .ad-nav-item { padding: 8px 10px; font-size: 13px; }
+  .ad-back-btn { margin-top: 0; padding: 8px 10px; font-size: 12px; }
+  .ad-back-btn.logout { margin-top: 0; }
+  .ad-main { padding: 14px; }
+  .ad-header { flex-wrap: wrap; gap: 10px; }
+  .ad-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ad-stat-card { padding: 14px; }
+  .ad-charts-grid { grid-template-columns: 1fr; gap: 14px; }
+}
